@@ -1,0 +1,3 @@
+---@meta matrix-class
+
+matrix = {}

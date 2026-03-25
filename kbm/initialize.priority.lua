@@ -1,0 +1,3 @@
+---@meta input-class
+
+kbm = {}
