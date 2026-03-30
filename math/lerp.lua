@@ -1,17 +1,19 @@
----Returns a number that is `(weight * 100)%` of the way from travelling between `lowerBound` and `upperBound`.
----@param weight number
----@param lowerBound number
----@param upperBound number
+---Returns a number that is `(t * 100)%` of the way from travelling between `a` and `b`.
+---@param a number
+---@param b number
+---@param t number
 ---@return number
-function math.lerp(weight, lowerBound, upperBound)
-    return upperBound * weight + lowerBound * (1 - weight)
+function math.lerp(a, b, t)
+    return a + (b - a) * t
 end
 
----Returns the weight of a number between `lowerBound` and `upperBound`.
----@param num number
----@param lowerBound number
----@param upperBound number
+---On a number line, returns the percentage of which `x` is, progressing from `a` to `b`.
+---@param a number
+---@param b number
+---@param  x number
 ---@return number
-function math.inverseLerp(num, lowerBound, upperBound)
-    return (num - lowerBound) / (upperBound - lowerBound)
+function math.inverseLerp(a, b, x)
+    return (x - a) / (b - a)
 end
+
+math.iLerp = math.inverseLerp
