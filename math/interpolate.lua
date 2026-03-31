@@ -1,4 +1,5 @@
 require('math.lerp')
+require('math.round')
 --[[Creates a samplable function which interpolates the point list with a basic algorithm described by the following spec:
 
 If `#pointList == 2`, creates a linear interpolation.
@@ -7,9 +8,7 @@ Otherwise, for every ordered group of 3 points within `pointList` (123, 234, 345
 
 If `p1 == p2`, creates a constant interpolation.
 
-If `p3-p2` and `p2-p1` are the same sign, creates an exponential interpolation that uses p1, p2, and p3, but only renders within p1-p2.
-
-Otherwise, creates a cubic hermite spline within p1-p2, where both `p2' = 0`.
+Otherwise, creates a cubic hermite spline within p1-p2, where `p2' = 0`.
 
 Each group's `p1` inherits its derivative from the last group's `p2`, except for the first group, which uses a `p1'` such that the derivative is maximized and is monotonic.
 
@@ -35,7 +34,7 @@ function math.interpolateBasic(pointList)
             table.insert(functionTable, function(_) return p1 end)
             pastDerivative = 0
             goto nextGroup
-        elseif ((p2 - p1) * (p3 - p2) <= 0) then
+        elseif ((p3 - p2) * (p2 - p1) <= 0) then
             if (not pastDerivative) then -- Ensure past derivative is nonnegative and is as large as possible by setting the discriminant to 0.
                 pastDerivative = 3 * (p2 - p1)
             end
@@ -81,7 +80,12 @@ function math.interpolateBasic(pointList)
     return function(x)
         if (x < 0 or x > #functionTable) then return 1e10 end
         local fracX = math.frac(x)
-        local usedFn = functionTable[math.min(math.floor(x + 0.01) + 1, #functionTable)]
+        local tolerance = 1e-5
+        if (fracX < tolerance or fracX > 1 - tolerance) then
+            return pointList[math.round(x) + 1]
+        end
+
+        local usedFn = functionTable[math.min(math.floor(x) + 1, #functionTable)]
 
         return usedFn(fracX)
     end
