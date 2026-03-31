@@ -1,4 +1,4 @@
-require("math.lerp")
+require('math.lerp')
 --[[Creates a samplable function which interpolates the point list with a basic algorithm described by the following spec:
 
 If `#pointList == 2`, creates a linear interpolation.
@@ -13,7 +13,7 @@ Otherwise, creates a cubic hermite spline within p1-p2, where both `p2' = 0`.
 
 Each group's `p1` inherits its derivative from the last group's `p2`, except for the first group, which uses a `p1'` such that the derivative is maximized and is monotonic.
 
-This process repeats until the last ordered group has a generated function.
+This process repeats until the last ordered group has a generated function. The gap between the final two points is constructed with a cubic interpolation given the past derivative.
 ]]
 ---@param pointList number[]
 function math.interpolateBasic(pointList)
@@ -65,10 +65,23 @@ function math.interpolateBasic(pointList)
         ::nextGroup::
     end
 
+    local pQuarterfinal = pointList[#pointList - 2]
+    local pSemifinal = pointList[#pointList - 1]
+    local pFinal = pointList[#pointList]
+
+    local b = (pFinal + pQuarterfinal) / 2 - pSemifinal
+    local a = pFinal - pSemifinal - pastDerivative - b
+    local c = pastDerivative
+    local d = pSemifinal
+
+    table.insert(functionTable, function(x)
+        return a * x * x * x + b * x * x + c * x + d
+    end)
+
     return function(x)
-        if (x < 0 or x > #functionTable) then return nil end
+        if (x < 0 or x > #functionTable) then return 1e10 end
         local fracX = math.frac(x)
-        local usedFn = functionTable[math.floor(x) + 1]
+        local usedFn = functionTable[math.min(math.floor(x + 0.01) + 1, #functionTable)]
 
         return usedFn(fracX)
     end
