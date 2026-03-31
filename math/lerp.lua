@@ -10,7 +10,7 @@ end
 ---On a number line, returns the percentage of which `x` is, progressing from `a` to `b`.
 ---@param a number
 ---@param b number
----@param  x number
+---@param x number
 ---@return number
 function math.inverseLerp(a, b, x)
     return (x - a) / (b - a)
