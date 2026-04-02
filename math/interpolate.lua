@@ -53,7 +53,10 @@ function math.interpolateBasic(pointList)
             end)
 
             pastDerivative = 0
-        else -- Cubic interpolation of 3 points with missing degree of freedom accounted for via the derivative at p1.
+        else                       -- Cubic interpolation of 3 points with missing degree of freedom accounted for via the derivative at p1.
+            if (not pastDerivative) then
+                pastDerivative = 0 -- Initialize ramping cubic, ensuring monotonicity within p1-p2.
+            end
             local p1Prime = pastDerivative
             local a = (p3 - 4 * p2 + 3 * p1 + 2 * p1Prime) / 4
             local b = -p3 / 4 + 2 * p2 - 7 / 4 * p1 - 3 / 2 * p1Prime
@@ -64,7 +67,7 @@ function math.interpolateBasic(pointList)
                 return a * x * x * x + b * x * x + c * x + d
             end)
 
-            pastDerivative = a * b * math.log(b)
+            pastDerivative = 3 * a + 2 * b + c
         end
 
         ::nextGroup::
