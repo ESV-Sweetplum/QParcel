@@ -8,11 +8,15 @@ Otherwise, for every ordered group of 3 points within `pointList` (123, 234, 345
 
 If `p1 == p2`, creates a constant interpolation.
 
-Otherwise, creates a cubic hermite spline within p1-p2, where `p2' = 0`.
+Otherwise, if p1, p2, and p3 are not monotone, creates a cubic hermite spline within p1-p2, where `p2' = 0`.
+
+Otherwise, creates a cubic semi-hermite spline within `p1-p2` using p1, p2, and p3, where `p1' = 0` and `p2'` is free.
 
 Each group's `p1` inherits its derivative from the last group's `p2`, except for the first group, which uses a `p1'` such that the derivative is maximized and is monotonic.
 
 This process repeats until the last ordered group has a generated function. The gap between the final two points is constructed with a cubic interpolation given the past derivative.
+
+Interally, all functions have a domain of [0,1], and the inputted x-value is fractionalized before entering the function table.
 ]]
 ---@param pointList number[]
 function math.interpolateBasic(pointList)
@@ -34,8 +38,8 @@ function math.interpolateBasic(pointList)
             table.insert(functionTable, function(_) return p1 end)
             pastDerivative = 0
             goto nextGroup
-        elseif ((p3 - p2) * (p2 - p1) <= 0) then
-            if (not pastDerivative) then -- Ensure past derivative is nonnegative and is as large as possible by setting the discriminant to 0.
+        elseif ((p3 - p2) * (p2 - p1) <= 0) then -- p2Prime should be 0.
+            if (not pastDerivative) then         -- Ensure past derivative is nonnegative and is as large as possible by setting the discriminant to 0.
                 pastDerivative = 3 * (p2 - p1)
             end
             local p1Prime = pastDerivative
@@ -49,13 +53,15 @@ function math.interpolateBasic(pointList)
             end)
 
             pastDerivative = 0
-        else
-            local b = (p3 - p2) / (p2 - p1)
-            local a = (p2 - p1) / (b - 1)
-            local c = p1 - a
+        else -- Cubic interpolation of 3 points with missing degree of freedom accounted for via the derivative at p1.
+            local p1Prime = pastDerivative
+            local a = (p3 - 4 * p2 + 3 * p1 + 2 * p1Prime) / 4
+            local b = -p3 / 4 + 2 * p2 - 7 / 4 * p1 - 3 / 2 * p1Prime
+            local c = p1Prime
+            local d = p1
 
             table.insert(functionTable, function(x)
-                return a * b ^ x + c
+                return a * x * x * x + b * x * x + c * x + d
             end)
 
             pastDerivative = a * b * math.log(b)
@@ -69,7 +75,7 @@ function math.interpolateBasic(pointList)
     local pFinal = pointList[#pointList]
 
     local b = (pFinal + pQuarterfinal) / 2 - pSemifinal
-    local a = pFinal - pSemifinal - pastDerivative - b
+    local a = (pFinal - pQuarterfinal) / 2 - pastDerivative
     local c = pastDerivative
     local d = pSemifinal
 
