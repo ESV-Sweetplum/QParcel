@@ -11,7 +11,5 @@ function game.get.timingGroupList()
     table.insert(baseList, 1, '$Default')
     table.insert(baseList, 2, '$Global')
 
-    if (globalVars.hideAutomatic) then table.filter(baseList, function(str) return not string.find(str, 'automate_') end) end
-
     return baseList
 end
