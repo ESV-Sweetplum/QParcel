@@ -6,17 +6,13 @@ require('packages.table.sort')
 ---@return number[]
 function game.get.uniqueNoteOffsetsBetweenSelected(includeLN)
     local selectedNoteOffsets = game.get.uniqueSelectedNoteOffsets()
-    if (not selectedNoteOffsets) then
-        toggleablePrint('e!',
-            'Warning: There are not enough notes in the current selection (within this timing group) to perform the action.')
+    if (not truthy(selectedNoteOffsets)) then
         return {}
     end
     local startOffset = selectedNoteOffsets[1]
     local endOffset = selectedNoteOffsets[#selectedNoteOffsets]
     local offsets = game.get.uniqueNoteOffsetsBetween(startOffset, endOffset, includeLN)
     if (#offsets < 2) then
-        toggleablePrint('e!',
-            'Warning: There are not enough notes in the current selection (within this timing group) to perform the action.')
         return {}
     end
     return offsets
@@ -30,7 +26,7 @@ function game.get.uniqueSelectedNoteOffsets()
         table.insert(offsets, ho.StartTime)
         if (ho.EndTime ~= 0 and globalVars.useEndTimeOffsets) then table.insert(offsets, ho.EndTime) end
     end
-    if (not isTruthy(offsets)) then return {} end
+    if (not truthy(offsets)) then return {} end
     offsets = table.dedupe(offsets)
     offsets = sort(offsets, sortAscending)
     return offsets
@@ -40,17 +36,13 @@ end
 ---@return HitObject[]
 function game.get.uniqueNotesBetweenSelected()
     local selectedNoteOffsets = game.get.uniqueSelectedNoteOffsets()
-    if (not selectedNoteOffsets) then
-        toggleablePrint('e!',
-            'Warning: There are not enough notes in the current selection (within this timing group) to perform the action.')
+    if (not truthy(selectedNoteOffsets)) then
         return {}
     end
     local startOffset = selectedNoteOffsets[1]
     local endOffset = selectedNoteOffsets[#selectedNoteOffsets]
     local hos = game.get.notesBetweenOffsets(startOffset, endOffset)
     if (#hos < 2) then
-        toggleablePrint('e!',
-            'Warning: There are not enough notes in the current selection (within this timing group) to perform the action.')
         return {}
     end
     return hos

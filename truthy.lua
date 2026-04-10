@@ -2,7 +2,7 @@
 ---@param param any The parameter to truthify.
 ---@param assumeTrue? boolean If the item is nil, will return true if this is true.
 ---@return boolean truthy The truthy value of the parameter.
-function isTruthy(param, assumeTrue)
+function truthy(param, assumeTrue)
     local t = type(param)
     if t == 'string' then
         return param:lower() == 'true'
@@ -18,3 +18,5 @@ function isTruthy(param, assumeTrue)
     end
     return assumeTrue or false
 end
+
+isTruthy = truthy

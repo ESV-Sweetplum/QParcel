@@ -95,8 +95,8 @@ function game.get.svMultiplierAt(offset, tgId)
     if sv then return sv.Multiplier end
 
     local initTgSv = state.SelectedScrollGroup.InitialScrollVelocity
-    if isTruthy(initTgSv) then return initTgSv end
+    if truthy(initTgSv) then return initTgSv end
     local initSV = map.InitialScrollVelocity
-    if isTruthy(initSV) then return initSV end
+    if truthy(initSV) then return initSV end
     return 1
 end
