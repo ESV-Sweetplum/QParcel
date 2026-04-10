@@ -1477,7 +1477,7 @@ history_type   = {
 ---@alias fmt string | number | boolean | table
 ---@class Type
 
-imgui = {}
+imgui          = {}
 
 ---##### (READ-ONLY)
 ---@param type string
