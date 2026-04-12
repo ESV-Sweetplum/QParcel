@@ -119,7 +119,7 @@ end
 ---@return Vector4
 function color.strToRgba(str)
     local rgb = {}
-    str:gsub('(%d+)', |c|table.insert(rgb, c))
+    str:gsub('(%d+)', function(c) table.insert(rgb, c) end)
     return vector.New(rgb[1] / 255, rgb[2] / 255, rgb[3] / 255, 1)
 end
 
