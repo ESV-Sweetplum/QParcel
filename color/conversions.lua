@@ -66,6 +66,7 @@ end
 function color.hexaToRgba(hexa)
     hexa = hexa:lower()
     if (hexa:charAt(1) == "#") then hexa = hexa:sub(2) end
+    if (hexa:len() == 6) then hexa = hexa .. "ff" end
     local rgbaTable = {}
     for i = 1, 8, 2 do
         table.insert(rgbaTable,
