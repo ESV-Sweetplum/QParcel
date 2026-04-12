@@ -71,7 +71,7 @@ function color.hexaToRgba(hexa)
         table.insert(rgbaTable,
             table.indexOf(HEXADECIMAL, hexa:charAt(i)) * 16 + table.indexOf(HEXADECIMAL, hexa:charAt(i + 1)) - 17)
     end
-    return table.vectorize4(rgbaTable)
+    return table.vectorize4(rgbaTable) / 255
 end
 
 ---Converts rgba to an ndua string (base 92).
