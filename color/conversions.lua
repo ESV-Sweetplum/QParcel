@@ -52,10 +52,20 @@ function color.rgbaToHexa(r, g, b, a)
     return hexaStr
 end
 
+---Converts rgba to a hexa string.
+---@param col Vector4
+---@return string
+function color.vrgbaToHexa(col)
+    local flr = math.floor
+    return color.rgbaToHexa(flr(col.x * 255), flr(col.y * 255), flr(col.z * 255), flr(col.w * 255))
+end
+
 ---Converts a hexa string to an rgba Vector4 (0-1 for each element).
 ---@param hexa string
 ---@return Vector4
 function color.hexaToRgba(hexa)
+    hexa = hexa:lower()
+    if (hexa:charAt(1) == "#") then hexa = hexa:sub(2) end
     local rgbaTable = {}
     for i = 1, 8, 2 do
         table.insert(rgbaTable,
