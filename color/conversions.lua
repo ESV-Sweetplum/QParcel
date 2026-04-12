@@ -66,12 +66,13 @@ end
 function color.hexaToRgba(hexa)
     hexa = hexa:lower()
     if (hexa:charAt(1) == "#") then hexa = hexa:sub(2) end
+    if (hexa:len() == 6) then hexa = hexa .. "ff" end
     local rgbaTable = {}
     for i = 1, 8, 2 do
         table.insert(rgbaTable,
             table.indexOf(HEXADECIMAL, hexa:charAt(i)) * 16 + table.indexOf(HEXADECIMAL, hexa:charAt(i + 1)) - 17)
     end
-    return table.vectorize4(rgbaTable)
+    return table.vectorize4(rgbaTable) / 255
 end
 
 ---Converts rgba to an ndua string (base 92).
