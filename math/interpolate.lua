@@ -20,7 +20,7 @@ Interally, all functions have a domain of [0,1], and the inputted x-value is fra
 ]]
 ---@param pointList number[]
 function math.interpolateBasic(pointList)
-    if (#pointList == 2) then
+    if #pointList == 2 then
         return |x| math.lerp(pointList[1], pointList[2], x)
     end
 
@@ -37,7 +37,7 @@ function math.interpolateBasic(pointList)
             pastDerivative = 0
             goto nextGroup
         elseif ((p3 - p2) * (p2 - p1) <= 0) then -- p2Prime should be 0.
-            if (not pastDerivative) then         -- Ensure past derivative is nonnegative and is as large as possible by setting the discriminant to 0.
+            if not pastDerivative then         -- Ensure past derivative is nonnegative and is as large as possible by setting the discriminant to 0.
                 pastDerivative = 3 * (p2 - p1)
             end
             local p1Prime = pastDerivative
@@ -50,7 +50,7 @@ function math.interpolateBasic(pointList)
 
             pastDerivative = 0
         else                       -- Cubic interpolation of 3 points with missing degree of freedom accounted for via the derivative at p1.
-            if (not pastDerivative) then
+            if not pastDerivative then
                 pastDerivative = 0 -- Initialize ramping cubic, ensuring monotonicity within p1-p2.
             end
             local p1Prime = pastDerivative

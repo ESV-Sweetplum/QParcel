@@ -5,7 +5,7 @@
 ---@return number z1 A random number.
 ---@return number x2 Another random number.
 function math.gaussianRandom(mean, stdDev, withinStdDevCount)
-    if (stdDev == 0) then return mean, mean end
+    if stdDev == 0 then return mean, mean end
 
     local output, output2 = nil, 0
     while (not output or math.abs(output - mean) / stdDev > withinStdDevCount) do

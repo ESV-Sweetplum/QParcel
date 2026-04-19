@@ -3,7 +3,7 @@ function matrix.multiply(m1, m2)
     local p2 = type(m1[1]) == 'table' and #m1[1] or #m1
     local q1 = type(m2[1]) == 'table' and #m1 or 1
     local q2 = type(m2[1]) == 'table' and #m2[1] or #m2
-    if (p2 ~= q1) then error('Incompatible matrices were told to be multiplied', 69) end
+    if p2 ~= q1 then error('Incompatible matrices were told to be multiplied', 69) end
     local result = {}
     local rowCount = p1
     local columnCount = q2

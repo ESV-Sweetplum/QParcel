@@ -6,7 +6,7 @@ require('packages.math.toNumber')
 ---@return any
 function table.parse(str)
     if (str == 'FALSE' or str == 'TRUE') then return str == 'TRUE' end
-    if (str:charAt(1) == '"') then return str:sub(2, -2) end
+    if str:charAt(1) == '"' then return str:sub(2, -2) end
     if (str:match('^%-?%d+$') or str:match('^%-?%d+E[%+%-]%d+$')) then return math.toNumber(str) end
     if (str:match('^%-?%.%d+$') or str:match('^%-?%.%d+E[%+%-]%d+$')) then return math.toNumber(str) end
     if (str:match('^%-?%d+%.%d+$') or str:match('^%-?%d+%.%d+E[%+%-]%d+$')) then return math.toNumber(str) end
@@ -21,7 +21,7 @@ function table.parse(str)
     local tbl = {}
     local terms = {}
     local MAX_ITERATIONS = 10000
-    for i = 1, MAX_ITERATIONS do
+    for _ = 1, MAX_ITERATIONS do
         local nestedTableFactor = tn(table.contains({ '[', '{' }, str:charAt(2)))
         local depth = nestedTableFactor
         local searchIdx = 2 + nestedTableFactor
@@ -41,10 +41,10 @@ function table.parse(str)
         end
         table.insert(terms, str:sub(2, searchIdx + nestedTableFactor - 1))
         str = str:sub(searchIdx + nestedTableFactor)
-        if (str:len() <= 1) then break end
+        if str:len() <= 1 then break end
     end
 
-    if (tableType == 'arr') then
+    if tableType == 'arr' then
         for _, v in ipairs(terms) do
             table.insert(tbl, table.parse(v))
         end

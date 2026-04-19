@@ -12,7 +12,7 @@ function game.get.uniqueNoteOffsetsBetweenSelected(includeLN)
     local startOffset = selectedNoteOffsets[1]
     local endOffset = selectedNoteOffsets[#selectedNoteOffsets]
     local offsets = game.get.uniqueNoteOffsetsBetween(startOffset, endOffset, includeLN)
-    if (#offsets < 2) then
+    if #offsets < 2 then
         return {}
     end
     return offsets
@@ -26,7 +26,7 @@ function game.get.uniqueSelectedNoteOffsets()
         table.insert(offsets, ho.StartTime)
         if (ho.EndTime ~= 0 and globalVars.useEndTimeOffsets) then table.insert(offsets, ho.EndTime) end
     end
-    if (not truthy(offsets)) then return {} end
+    if not truthy(offsets) then return {} end
     offsets = table.dedupe(offsets)
     offsets = sort(offsets, sortAscending)
     return offsets
@@ -42,7 +42,7 @@ function game.get.uniqueNotesBetweenSelected()
     local startOffset = selectedNoteOffsets[1]
     local endOffset = selectedNoteOffsets[#selectedNoteOffsets]
     local hos = game.get.notesBetweenOffsets(startOffset, endOffset)
-    if (#hos < 2) then
+    if #hos < 2 then
         return {}
     end
     return hos

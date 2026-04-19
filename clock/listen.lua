@@ -8,11 +8,11 @@ function clock.listen(id, interval)
     local currentTime = state
         .UnixTime -- Avoid calling state global multiple times, which causes a heavy load on performance
     local prevTime = cache.clock[id]
-    if (not prevTime) then
+    if not prevTime then
         cache.clock[id] = currentTime
         prevTime = currentTime
     end
-    if (currentTime - prevTime > interval) then
+    if currentTime - prevTime > interval then
         cache.clock[id] = currentTime
         return true
     end

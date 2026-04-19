@@ -5,7 +5,7 @@ require('packages.table.slice')
 ---@param value string[]
 ---@return any
 function table.nestedValue(tree, value)
-    if (#value > 1) then
+    if #value > 1 then
         return table.nestedValue(tree[value[1]], table.slice(value, 2))
     end
 

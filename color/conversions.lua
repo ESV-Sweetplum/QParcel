@@ -66,7 +66,7 @@ end
 function color.hexaToRgba(hexa)
     hexa = hexa:lower()
     if (hexa:charAt(1) == "#") then hexa = hexa:sub(2) end
-    if (hexa:len() == 6) then hexa = hexa .. "ff" end
+    if hexa:len() == 6 then hexa = hexa .. "ff" end
     local rgbaTable = {}
     for i = 1, 8, 2 do
         table.insert(rgbaTable,
@@ -99,7 +99,7 @@ function color.nduaToRgba(ndua)
     local num = 0
     for i = 1, 5 do
         local idx = table.indexOf(NONDUA, ndua:charAt(i))
-        if (idx == -1) then goto nextIndex end
+        if idx == -1 then goto nextIndex end
         num = num + (idx - 1) * 92 ^ (5 - i)
         ::nextIndex::
     end

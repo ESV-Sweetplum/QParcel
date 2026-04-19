@@ -17,17 +17,30 @@ function pluralize(str, val, pos)
     if val == 1 then return str .. (strEnding or '') end
     local lastLetter = str:sub(-1):upper()
     local secondToLastLetter = str:charAt(-2):upper()
-    if (lastLetter == 'Y' and table.contains(CONSONANTS, secondToLastLetter)) then
+    if table.contains({ "I", "E" }, secondToLastLetter) and lastLetter == "X" then
+        finalStrTbl[1] = finalStrTbl[1]:sub(1, -2)
+        finalStrTbl[2] = "ices"
+    end
+    if (lastLetter == 'Y' and table.contains(CONSONANTS, secondToLastLetter)) or str:sub(-3):lower() == 'quy' then
         finalStrTbl[1] = finalStrTbl[1]:sub(1, -2)
         finalStrTbl[2] = 'ies'
     end
-    if (str:sub(-3):lower() == 'quy') then
-        finalStrTbl[1] = finalStrTbl[1]:sub(1, -2)
-        finalStrTbl[2] = 'ies'
-    end
-    if (table.contains({ 'J', 'S', 'X', 'Z' }, lastLetter) or table.contains({ 'SH', 'CH' }, str:sub(-2))) then
+    if table.contains({ 'J', 'S', 'X', 'Z' }, lastLetter) or table.contains({ 'SH', 'CH' }, str:sub(-2)) then
         finalStrTbl[2] = 'es'
+    end
+    if (lastLetter == "E" and secondToLastLetter == "F") or lastLetter == "F" then
+        finalStrTbl[1] = finalStrTbl[1]:sub(1, -2)
+        finalStrTbl[2] = 'ves'
     end
 
     return table.concat(finalStrTbl) .. (strEnding or '')
+end
+
+---Returns one of two strings, depending on if `val` reckons a plural result.
+---@param str string The string to be returned if `val` is single.
+---@param strP string The string to be returned if `val` is plural.
+---@param val number The value, or count, of the noun, which will determine if it should be plural.
+---@return string pluralizedStr A new string that is pluralized if `val ~= 1`.
+function pluralizeExplicit(str, strP, val)
+    return val == 1 and str or strP
 end

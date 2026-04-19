@@ -7,8 +7,8 @@ function table.stringify(var)
     if (type(var) == 'boolean') then return var and 'TRUE' or 'FALSE' end
     if (type(var) == 'string') then return '"' .. var .. '"' end
     if (type(var) == 'number') then return var end
-    if (type(var) ~= 'table') then return 'UNKNOWN' end
-    if (var[1] ~= nil) then
+    if type(var) ~= 'table' then return 'UNKNOWN' end
+    if var[1] ~= nil then
         local str = '['
         for _, v in ipairs(var) do
             str = str .. table.stringify(v) .. ','

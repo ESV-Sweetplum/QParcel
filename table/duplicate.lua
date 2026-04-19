@@ -6,7 +6,7 @@ require('packages.table.keys')
 function table.duplicate(tbl)
     if not tbl then return {} end
     local dupeTbl = {}
-    if (tbl[1]) then
+    if tbl[1] then
         for _, value in ipairs(tbl) do
             table.insert(dupeTbl, type(value) == 'table' and table.duplicate(value) or value)
         end

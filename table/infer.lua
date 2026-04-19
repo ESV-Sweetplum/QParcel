@@ -7,13 +7,13 @@ function table.infer(v, t)
     if (v == nil or t == 'table' or t == 'userdata') then
         return nil
     end
-    if (t == 'number') then
+    if t == 'number' then
         return tn(v)
     end
-    if (t == 'boolean') then
+    if t == 'boolean' then
         return truthy(v)
     end
-    if (t == 'string') then
+    if t == 'string' then
         return v
     end
     return v

@@ -8,7 +8,7 @@ require('packages.math.matrix.scaleRow')
 ---@return number[]? sln The solution vector, given that it exists. Will return `nil` if no such vector exists.
 ---@return number? errType If no such vector exists, returns positive infinity if the system has infinite solutions, zero if the system has zero solutions, and negative infinity if the matrix and vector are not compatible.
 function matrix.solve(mtrx, vctr)
-    if (#vctr ~= #mtrx) then return nil, -1 / 0 end
+    if #vctr ~= #mtrx then return nil, -1 / 0 end
     local augMtrx = table.duplicate(mtrx)
     for i, n in pairs(vctr) do
         table.insert(augMtrx[i], n)
