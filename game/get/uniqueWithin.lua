@@ -24,7 +24,7 @@ function game.get.uniqueSelectedNoteOffsets()
     local offsets = {}
     for _, ho in pairs(state.SelectedHitObjects) do
         table.insert(offsets, ho.StartTime)
-        if (ho.EndTime ~= 0 and globalVars.useEndTimeOffsets) then table.insert(offsets, ho.EndTime) end
+        if (ho.EndTime ~= 0 and _QParcelConfig.useEndTimeOffsets) then table.insert(offsets, ho.EndTime) end
     end
     if not truthy(offsets) then return {} end
     offsets = table.dedupe(offsets)
@@ -55,11 +55,11 @@ end
 ---@return number[]
 function game.get.uniqueNoteOffsetsBetween(startOffset, endOffset, includeLN)
     local noteOffsetsBetween = {}
-    includeLN = includeLN or globalVars.useEndTimeOffsets
+    includeLN = includeLN or _QParcelConfig.useEndTimeOffsets
     for _, ho in ipairs(map.HitObjects) do
         if ho.StartTime >= startOffset and ho.StartTime <= endOffset then
             local skipNote = false
-            if (state.SelectedScrollGroupId ~= ho.TimingGroup and globalVars.ignoreNotesOutsideTg) then skipNote = true end
+            if (state.SelectedScrollGroupId ~= ho.TimingGroup and _QParcelConfig.ignoreNotesOutsideTg) then skipNote = true end
             if (ho.StartTime == startOffset or ho.StartTime == endOffset) then skipNote = false end
 
             if skipNote then goto nextNote end
