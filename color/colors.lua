@@ -36,7 +36,7 @@ color.vctr.light_blue = vector.New(0.5, 0.5, 1, 1)
 
 color.int.blue = color.int.oBlueMask * 255
 
-color.vctr.purple = vector.New(1, 0, 1, 1)
+color.vctr.purple = vector.New(0.5, 0, 1, 1)
 color.vctr.light_purple = vector.New(1, 0.5, 1, 1)
 
 color.int.purple = 4294901887
