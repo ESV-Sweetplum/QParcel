@@ -1,11 +1,12 @@
 require('packages.table.construct')
 ---Returns a table of values from a table.
----@param tbl { [string]: any } The table to search in.
----@return string[] values A list of values.
+---@generic T
+---@param tbl { [string]: T } The table to search in.
+---@return T[] values A list of values.
 function table.values(tbl)
-    local resultsTbl = table.construct()
+    local resultsTbl = {}
 
-    for _, v in ipairs(tbl) do
+    for _, v in pairs(tbl) do
         table.insert(resultsTbl, v)
     end
 
