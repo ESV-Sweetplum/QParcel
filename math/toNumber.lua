@@ -1,5 +1,5 @@
 ---Alias of [tonumber](lua://tonumber) for type coercion. Converts boolean values into their respective binary digits.
----@param x string | number | boolean
+---@param x (string | number | boolean)?
 ---@param defaultValue? number
 ---@return number
 function math.toNumber(x, defaultValue)
