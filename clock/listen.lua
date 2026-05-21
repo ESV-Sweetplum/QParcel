@@ -1,4 +1,4 @@
-require('packages.cache.initialize.priority')
+require('packages.cache')
 
 ---Returns true every `interval` ms.
 ---@param id string The unique identifier of the clock.
@@ -7,13 +7,10 @@ require('packages.cache.initialize.priority')
 function clock.listen(id, interval)
     local currentTime = state
         .UnixTime -- Avoid calling state global multiple times, which causes a heavy load on performance
-    local prevTime = cache.clock[id]
-    if not prevTime then
-        cache.clock[id] = currentTime
-        prevTime = currentTime
-    end
+    local cacheId = 'clock/' .. id
+    local prevTime = cache.get(cacheId, currentTime)
     if currentTime - prevTime > interval then
-        cache.clock[id] = currentTime
+        cache.set(cacheId, currentTime)
         return true
     end
 
