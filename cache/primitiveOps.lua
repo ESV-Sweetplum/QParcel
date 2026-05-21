@@ -1,8 +1,9 @@
 ---Gets a value from the cache.
 ---@generic T
 ---@param id string The identifier.
----@param fallback T If the item doesn't exist, returns this instead.
+---@param fallback? T If the item doesn't exist, returns this instead.
 ---@return T
+---@nodiscard
 function cache.get(id, fallback)
     return state.GetValue(id, fallback)
 end
