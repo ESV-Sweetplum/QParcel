@@ -2,7 +2,7 @@
 ---Gets a list of variables.
 ---@param listName string An identifier to avoid state collisions.
 ---@param variables { [string]: any } The key-value table to get data for.
-function cache.loadTable(listName, variables)
+function cache.load(listName, variables)
     for key, _ in pairs(variables) do
         if (state.GetValue(listName .. key) ~= nil) then
             variables[key] = state.GetValue(listName .. key)
@@ -13,7 +13,7 @@ end
 ---Saves a table in state, independently.
 ---@param listName string An identifier to avoid state collisions.
 ---@param variables { [string]: any } A key-value table to save.
-function cache.saveTable(listName, variables)
+function cache.save(listName, variables)
     for key, value in pairs(variables) do
         state.SetValue(listName .. key, value)
     end

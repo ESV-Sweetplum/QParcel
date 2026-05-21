@@ -4,4 +4,5 @@ cache = {
     boolean = {},
     windows = {},
     lists = {},
+    tree = {}
 }

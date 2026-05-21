@@ -1,4 +1,5 @@
 _QParcelConfig = {
     useEndTimeOffsets = false,
-    ignoreNotesOutsideTg = false
+    ignoreNotesOutsideTg = false,
+    saveCacheTree = false,
 }
