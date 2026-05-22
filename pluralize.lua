@@ -10,17 +10,17 @@ CONSONANTS = { 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 
 function pluralize(str, val, pos)
     local strEnding = ''
     if pos then
-        strEnding = str:sub(pos + 1, -1) or ""
+        strEnding = str:sub(pos + 1, -1) or ''
         str = str:sub(1, pos)
     end
     local finalStrTbl = { str, 's' }
     if math.abs(val) == 1 then return str .. strEnding end
-    if (str == str:upper()) then return str .. "s" end
+    if (str == str:upper()) then return str .. 's' .. strEnding end
     local lastLetter = str:sub(-1):upper()
     local secondToLastLetter = str:charAt(-2):upper()
-    if table.contains({ "I", "E" }, secondToLastLetter) and lastLetter == "X" then
+    if table.contains({ 'I', 'E' }, secondToLastLetter) and lastLetter == 'X' then
         finalStrTbl[1] = finalStrTbl[1]:sub(1, -2)
-        finalStrTbl[2] = "ices"
+        finalStrTbl[2] = 'ices'
     end
     if (lastLetter == 'Y' and table.contains(CONSONANTS, secondToLastLetter)) or str:sub(-3):lower() == 'quy' then
         finalStrTbl[1] = finalStrTbl[1]:sub(1, -2)
@@ -29,7 +29,7 @@ function pluralize(str, val, pos)
     if table.contains({ 'J', 'S', 'X', 'Z' }, lastLetter) or table.contains({ 'SH', 'CH' }, str:sub(-2)) then
         finalStrTbl[2] = 'es'
     end
-    if (lastLetter == "E" and secondToLastLetter == "F") or lastLetter == "F" then
+    if (lastLetter == 'E' and secondToLastLetter == 'F') or lastLetter == 'F' then
         finalStrTbl[1] = finalStrTbl[1]:sub(1, -2)
         finalStrTbl[2] = 'ves'
     end
