@@ -14,7 +14,8 @@ function pluralize(str, val, pos)
         str = str:sub(1, pos)
     end
     local finalStrTbl = { str, 's' }
-    if math.abs(val) == 1 or str == str:upper() then return str .. strEnding end
+    if math.abs(val) == 1 then return str .. strEnding end
+    if (str == str:upper()) then return str .. "s" end
     local lastLetter = str:sub(-1):upper()
     local secondToLastLetter = str:charAt(-2):upper()
     if table.contains({ "I", "E" }, secondToLastLetter) and lastLetter == "X" then
