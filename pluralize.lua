@@ -10,11 +10,11 @@ CONSONANTS = { 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 
 function pluralize(str, val, pos)
     local strEnding = ''
     if pos then
-        strEnding = str:sub(pos + 1, -1)
+        strEnding = str:sub(pos + 1, -1) or ""
         str = str:sub(1, pos)
     end
     local finalStrTbl = { str, 's' }
-    if math.abs(val) == 1 then return str .. (strEnding or '') end
+    if math.abs(val) == 1 or str == str:upper() then return str .. strEnding end
     local lastLetter = str:sub(-1):upper()
     local secondToLastLetter = str:charAt(-2):upper()
     if table.contains({ "I", "E" }, secondToLastLetter) and lastLetter == "X" then
