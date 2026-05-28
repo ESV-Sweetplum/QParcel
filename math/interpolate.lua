@@ -21,7 +21,7 @@ Interally, all functions have a domain of [0,1], and the inputted x-value is fra
 ---@param pointList number[]
 function math.interpolateBasic(pointList)
     if #pointList == 2 then
-        return |x| math.lerp(pointList[1], pointList[2], x)
+        return function(x) return math.lerp(pointList[1], pointList[2], x) end
     end
 
     local functionTable = {}
@@ -33,11 +33,11 @@ function math.interpolateBasic(pointList)
         local p3 = pointList[i + 2]
 
         if (math.abs(p2 - p1) < 1e-5) then
-            table.insert(functionTable, |_| p1)
+            table.insert(functionTable, function() return p1 end)
             pastDerivative = 0
             goto nextGroup
         elseif ((p3 - p2) * (p2 - p1) <= 0) then -- p2Prime should be 0.
-            if not pastDerivative then         -- Ensure past derivative is nonnegative and is as large as possible by setting the discriminant to 0.
+            if not pastDerivative then           -- Ensure past derivative is nonnegative and is as large as possible by setting the discriminant to 0.
                 pastDerivative = 3 * (p2 - p1)
             end
             local p1Prime = pastDerivative
@@ -46,7 +46,7 @@ function math.interpolateBasic(pointList)
             local b = 3 * (p2 - p1) - 2 * p1Prime - p2Prime
             local c = p1Prime
             local d = p1
-            table.insert(functionTable, |x| a * x * x * x + b * x * x + c * x + d)
+            table.insert(functionTable, function(x) return a * x * x * x + b * x * x + c * x + d end)
 
             pastDerivative = 0
         else                       -- Cubic interpolation of 3 points with missing degree of freedom accounted for via the derivative at p1.
@@ -59,7 +59,7 @@ function math.interpolateBasic(pointList)
             local c = p1Prime
             local d = p1
 
-            table.insert(functionTable, |x| a * x * x * x + b * x * x + c * x + d)
+            table.insert(functionTable, function(x) return a * x * x * x + b * x * x + c * x + d end)
 
             pastDerivative = 3 * a + 2 * b + c
         end
@@ -76,7 +76,7 @@ function math.interpolateBasic(pointList)
     local c = pastDerivative
     local d = pSemifinal
 
-    table.insert(functionTable, |x| a * x * x * x + b * x * x + c * x + d)
+    table.insert(functionTable, function(x) return a * x * x * x + b * x * x + c * x + d end)
 
     return function(x)
         if (x < 0 or x > #functionTable) then return 1e10 end
