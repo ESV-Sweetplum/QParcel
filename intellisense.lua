@@ -610,6 +610,11 @@ function actions.GoToObjects(input) end
 function actions.SetHitObjectSelection(hos) end
 
 ---##### (READ-ONLY)
+---#### Changes the [hit object coloring mode](lua://state.SelectedHitObjects) to be the [mode](lua://ColoringMode) passed as the argument.
+---@param mode ColoringMode The [mode](lua://HitObject) to use.
+function actions.SetViewColoring(mode) end
+
+---##### (READ-ONLY)
 ---#### Returns a BPM detector table, with information about suggested BPM and offset. If used, set the return value to a global variable to be used later, as this is one of the only methods that is performed asynchronously by the game.
 ---@return EditorBpmDetector
 ---@nodiscard
@@ -834,9 +839,10 @@ function utils.CreateScrollSpeedFactor(startTime, multiplier) end
 ---@param hitsounds? HitSounds The hitsounds that should be applied to the note.
 ---@param editorLayer? integer The index of the [editor layer](lua://EditorLayer) that this note should be added to.
 ---@param type? HitObjectType The type of the note (normal or mine).
+---@param timingGroup ScrollGroup The timing group to assign the note to.
 ---@return HitObject ho The requested note.
 ---@nodiscard
-function utils.CreateHitObject(startTime, lane, endTime, hitsounds, editorLayer, type) end
+function utils.CreateHitObject(startTime, lane, endTime, hitsounds, editorLayer, type, timingGroup) end
 
 ---##### (READ-ONLY)
 ---#### Creates a [timing point](lua://TimingPoint), to later be placed into an [`EditorAction`](lua://utils.CreateEditorAction) and executed.
@@ -1295,6 +1301,13 @@ hitobject_type = {
     Mine = 1,
 }
 
+---@enum ColoringMode
+coloring_mode  = {
+    None = 0,
+    Layer = 1,
+    TimingGroup = 2,
+}
+
 ---@enum Key
 keys           = {
     None = 0,                  -- Reserved.
@@ -1477,7 +1490,7 @@ history_type   = {
 ---@alias fmt string | number | boolean | table
 ---@class Type
 
-imgui = {}
+imgui          = {}
 
 ---##### (READ-ONLY)
 ---@param type string
