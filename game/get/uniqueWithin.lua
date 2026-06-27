@@ -6,15 +6,11 @@ require('packages.table.sort')
 ---@return number[]
 function game.get.uniqueNoteOffsetsBetweenSelected(includeLN)
     local selectedNoteOffsets = game.get.uniqueSelectedNoteOffsets()
-    if (not truthy(selectedNoteOffsets)) then
-        return {}
-    end
+    if not truthy(selectedNoteOffsets) then return {} end
     local startOffset = selectedNoteOffsets[1]
     local endOffset = selectedNoteOffsets[#selectedNoteOffsets]
     local offsets = game.get.uniqueNoteOffsetsBetween(startOffset, endOffset, includeLN)
-    if #offsets < 2 then
-        return {}
-    end
+    if #offsets < 2 then return {} end
     return offsets
 end
 
@@ -24,7 +20,7 @@ function game.get.uniqueSelectedNoteOffsets()
     local offsets = {}
     for _, ho in pairs(state.SelectedHitObjects) do
         table.insert(offsets, ho.StartTime)
-        if (ho.EndTime ~= 0 and _QParcelConfig.useEndTimeOffsets) then table.insert(offsets, ho.EndTime) end
+        if ho.EndTime ~= 0 and _QParcelConfig.useEndTimeOffsets then table.insert(offsets, ho.EndTime) end
     end
     if not truthy(offsets) then return {} end
     offsets = table.dedupe(offsets)
@@ -36,15 +32,11 @@ end
 ---@return HitObject[]
 function game.get.uniqueNotesBetweenSelected()
     local selectedNoteOffsets = game.get.uniqueSelectedNoteOffsets()
-    if (not truthy(selectedNoteOffsets)) then
-        return {}
-    end
+    if not truthy(selectedNoteOffsets) then return {} end
     local startOffset = selectedNoteOffsets[1]
     local endOffset = selectedNoteOffsets[#selectedNoteOffsets]
     local hos = game.get.notesBetweenOffsets(startOffset, endOffset)
-    if #hos < 2 then
-        return {}
-    end
+    if #hos < 2 then return {} end
     return hos
 end
 
@@ -59,14 +51,15 @@ function game.get.uniqueNoteOffsetsBetween(startOffset, endOffset, includeLN)
     for _, ho in ipairs(map.HitObjects) do
         if ho.StartTime >= startOffset and ho.StartTime <= endOffset then
             local skipNote = false
-            if (state.SelectedScrollGroupId ~= ho.TimingGroup and _QParcelConfig.ignoreNotesOutsideTg) then skipNote = true end
-            if (ho.StartTime == startOffset or ho.StartTime == endOffset) then skipNote = false end
+            if state.SelectedScrollGroupId ~= ho.TimingGroup and _QParcelConfig.ignoreNotesOutsideTg then
+                skipNote = true
+            end
+            if ho.StartTime == startOffset or ho.StartTime == endOffset then skipNote = false end
 
             if skipNote then goto nextNote end
             table.insert(noteOffsetsBetween, ho.StartTime)
-            if (ho.EndTime ~= 0 and ho.EndTime <= endOffset and includeLN) then
-                table.insert(noteOffsetsBetween,
-                    ho.EndTime)
+            if ho.EndTime ~= 0 and ho.EndTime <= endOffset and includeLN then
+                table.insert(noteOffsetsBetween, ho.EndTime)
             end
             ::nextNote::
         end

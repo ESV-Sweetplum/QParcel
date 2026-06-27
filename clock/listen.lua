@@ -5,10 +5,13 @@ require('packages.cache')
 ---@param interval integer The interval at which the clock should run.
 ---@return boolean ev True if the clock has reached its interval time.
 function clock.listen(id, interval)
-    local currentTime = state
-        .UnixTime -- Avoid calling state global multiple times, which causes a heavy load on performance
+    local currentTime = state.UnixTime -- Avoid calling state global multiple times, which causes a heavy load on performance
     local cacheId = 'clock/' .. id
-    local prevTime = cache.get(cacheId, currentTime)
+    local prevTime = cache.get(cacheId, -1)
+    if prevTime == -1 then
+        cache.set(cacheId, currentTime)
+        return false
+    end
     if currentTime - prevTime > interval then
         cache.set(cacheId, currentTime)
         return true
