@@ -32,7 +32,7 @@
 --@field ResnapHitObjects? [integer[], HitObject[]] | [integer[], HitObject[], boolean]---@field ReverseHitObjects? HitObject[]
 ---@field aBMs? Bookmark[] -- Creates the Bookmarks given in the table.
 --@field EditBookmark? [Bookmark, string]
----@field rBMs? Bookmark[]
+---@field rBMs? Bookmark[] -- Removes the Bookmarks given in the table.
 --@field ChangeBookmarkOffsets? [Bookmark[], integer]
 ---@field aTG? [string, ScrollGroup, HitObject[]] -- Creates the ScrollGroup given.
 ---@field rTG? [string] -- Removes the ScrollGroup given its id.
