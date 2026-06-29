@@ -1,53 +1,43 @@
 ---@class QueueElement
----@field PlaceHitObject? HitObject
----@field RemoveHitObject? HitObject
 --@field ResizeLongNote? [HitObject, integer, integer]
----@field RemoveHitObjectBatch? HitObject[]
----@field PlaceHitObjectBatch? HitObject[]
+---@field RemoveHitObjects? HitObject[]
+---@field AddHitObjects? HitObject[]
 --@field FlipHitObjects? HitObject[]
 --@field SwapLanes? [HitObject[], integer, integer]
 --@field MoveHitObjects? [HitObject[], integer, integer, true]
----@field AddHitsound? [HitObject[], HitSounds]
----@field RemoveHitsound? [HitObject[], HitSounds]
+--@field AddHitsound? [HitObject[], HitSounds]
+--@field RemoveHitsound? [HitObject[], HitSounds]
 ---@field CreateLayer? EditorLayer
 ---@field RemoveLayer? EditorLayer
 --@field RenameLayer? [EditorLayer, string]
----@field MoveToLayer? [EditorLayer, HitObject[]]
+--@field MoveToLayer? [EditorLayer, HitObject[]]
 --@field ColorLayer? [EditorLayer, integer, integer, integer]
 --@field ToggleLayerVisibility? EditorLayer
----@field AddScrollVelocity? ScrollVelocity | [ScrollVelocity, ScrollGroup]
----@field RemoveScrollVelocity? ScrollVelocity
----@field AddScrollVelocityBatch? ScrollVelocity[] | [ScrollVelocity[], ScrollGroup]
----@field RemoveScrollVelocityBatch? ScrollVelocity[]
----@field AddTimingPoint? TimingPoint
----@field RemoveTimingPoint? TimingPoint
----@field AddTimingPointBatch? TimingPoint[]
----@field RemoveTimingPointBatch? TimingPoint[]
+---@field AddScrollVelocities? ScrollVelocity[] | [ScrollVelocity[], ScrollGroup]
+---@field RemoveScrollVelocities? ScrollVelocity[]
+---@field AddTimingPoints? TimingPoint[]
+---@field RemoveTimingPoints? TimingPoint[]
 --@field ChangePreviewTime? integer
 --@field ChangeTimingPointOffset? [TimingPoint, number]
 --@field ChangeTimingPointBpm? [TimingPoint, number]
 --@field ChangeTimingPointSignature? [TimingPoint, integer]
 --@field ChangeTimingPointHidden? [TimingPoint, boolean]
 --@field ResetTimingPoint? TimingPoint
---@field ChangeTimingPointBpmBatch? [TimingPoint[], number]
---@field ChangeTimingPointSignatureBatch? [TimingPoint[], integer]
---@field ChangeTimingPointOffsetBatch? [TimingPoint[], number]
---@field ChangeScrollVelocityOffsetBatch? [ScrollVelocity[], number]
---@field ChangeScrollVelocityMultiplierBatch? [ScrollVelocity[], number]
+--@field ChangeTimingPointBpms? [TimingPoint[], number]
+--@field ChangeTimingPointSignatures? [TimingPoint[], integer]
+--@field ChangeTimingPointOffsets? [TimingPoint[], number]
+--@field ChangeScrollVelocityOffsets? [ScrollVelocity[], number]
+--@field ChangeScrollVelocityMultipliers? [ScrollVelocity[], number]
 --@field ApplyOffset? integer
 --@field ResnapHitObjects? [integer[], HitObject[]] | [integer[], HitObject[], boolean]---@field ReverseHitObjects? HitObject[]
----@field AddBookmark? Bookmark
----@field AddBookmarkBatch? Bookmark[]
+---@field AddBookmarks? Bookmark[]
 --@field EditBookmark? [Bookmark, string]
----@field RemoveBookmark? Bookmark
----@field RemoveBookmarkBatch? Bookmark[]
---@field ChangeBookmarkOffsetBatch? [Bookmark[], integer]
+---@field RemoveBookmarks? Bookmark[]
+--@field ChangeBookmarkOffsets? [Bookmark[], integer]
 ---@field CreateTimingGroup? [string, ScrollGroup, HitObject[]]
 ---@field RemoveTimingGroup? [string]
 --@field RenameTimingGroup? [string, string]
----@field MoveObjectsToTimingGroup? [HitObject[], string]
+--@field MoveObjectsToTimingGroup? [HitObject[], string]
 --@field ColorTimingGroup? [string, integer, integer, integer]
----@field AddScrollSpeedFactor? ScrollSpeedFactor | [ScrollSpeedFactor, ScrollGroup]
----@field AddScrollSpeedFactorBatch? ScrollSpeedFactor[] | [ScrollSpeedFactor[], ScrollGroup]
----@field RemoveScrollSpeedFactor? ScrollSpeedFactor
----@field RemoveScrollSpeedFactorBatch? ScrollSpeedFactor[]
+---@field AddScrollSpeedFactors? ScrollSpeedFactor[] | [ScrollSpeedFactor[], ScrollGroup]
+---@field RemoveScrollSpeedFactors? ScrollSpeedFactor[]
