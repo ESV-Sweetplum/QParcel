@@ -2,15 +2,15 @@
 function queue.add(e)
     local function insertIfExists(tbl, key)
         local item = e[key]
-        if (not item) then return end
+        if not item then return end
         table.insert(tbl, item)
         queue.edited[key] = true
     end
 
     local function insertManyIfExists(tbl, key)
         local items = e[key]
-        if (not items) then return end
-        if (not truthy(#items)) then items = { items } end
+        if not items then return end
+        if not truthy(#items) then items = { items } end
         for i = 1, #items do
             local item = items[i]
             table.insert(tbl, item)
@@ -18,24 +18,24 @@ function queue.add(e)
         queue.edited[key] = true
     end
 
-    insertManyIfExists(queue.cur.bmsToAdd, "AddBookmarks")
-    insertManyIfExists(queue.cur.bmsToRemove, "RemoveBookmarks")
+    insertManyIfExists(queue.cur.bmsToAdd, 'aBMs')
+    insertManyIfExists(queue.cur.bmsToRemove, 'rBMs')
 
-    insertManyIfExists(queue.cur.hosToAdd, "AddHitObjects")
-    insertManyIfExists(queue.cur.hosToRemove, "RemoveHitObjects")
+    insertManyIfExists(queue.cur.hosToAdd, 'aHOs')
+    insertManyIfExists(queue.cur.hosToRemove, 'rHOs')
 
-    insertIfExists(queue.cur.layersToAdd, "CreateLayer")
-    insertIfExists(queue.cur.layersToRemove, "RemoveLayer")
+    insertIfExists(queue.cur.layersToAdd, 'aL')
+    insertIfExists(queue.cur.layersToRemove, 'rL')
 
-    insertManyIfExists(queue.cur.svsToAdd, "AddScrollVelocities")
-    insertManyIfExists(queue.cur.svsToRemove, "RemoveScrollVelocities")
+    insertManyIfExists(queue.cur.svsToAdd, 'aSVs')
+    insertManyIfExists(queue.cur.svsToRemove, 'rSVs')
 
-    insertManyIfExists(queue.cur.ssfsToAdd, "AddScrollSpeedFactors")
-    insertManyIfExists(queue.cur.ssfsToRemove, "RemoveScrollSpeedFactors")
+    insertManyIfExists(queue.cur.ssfsToAdd, 'aSSFs')
+    insertManyIfExists(queue.cur.ssfsToRemove, 'rSSFs')
 
-    insertIfExists(queue.cur.tgsToAdd, "CreateTimingGroup")
-    insertIfExists(queue.cur.tgsToRemove, "RemoveTimingGroup")
+    insertIfExists(queue.cur.tgsToAdd, 'aTG')
+    insertIfExists(queue.cur.tgsToRemove, 'rTG')
 
-    insertManyIfExists(queue.cur.tpsToAdd, "AddTimingPoints")
-    insertManyIfExists(queue.cur.tpsToRemove, "RemoveTimingPoints")
+    insertManyIfExists(queue.cur.tpsToAdd, 'aTPs')
+    insertManyIfExists(queue.cur.tpsToRemove, 'rTPs')
 end
