@@ -1,22 +1,22 @@
 ---@class QueueElement
 --@field ResizeLongNote? [HitObject, integer, integer]
----@field RemoveHitObjects? HitObject[]
----@field AddHitObjects? HitObject[]
+---@field rHOs? HitObject[] -- Removes the HitObjects given in the table.
+---@field aHOs? HitObject[] -- Creates the HitObjects given in the table.
 --@field FlipHitObjects? HitObject[]
 --@field SwapLanes? [HitObject[], integer, integer]
 --@field MoveHitObjects? [HitObject[], integer, integer, true]
 --@field AddHitsound? [HitObject[], HitSounds]
 --@field RemoveHitsound? [HitObject[], HitSounds]
----@field CreateLayer? EditorLayer
----@field RemoveLayer? EditorLayer
+---@field aL? EditorLayer -- Creates the EditorLayer given.
+---@field rL? EditorLayer -- Removes the EditorLayer given.
 --@field RenameLayer? [EditorLayer, string]
 --@field MoveToLayer? [EditorLayer, HitObject[]]
 --@field ColorLayer? [EditorLayer, integer, integer, integer]
 --@field ToggleLayerVisibility? EditorLayer
----@field AddScrollVelocities? ScrollVelocity[] | [ScrollVelocity[], ScrollGroup]
----@field RemoveScrollVelocities? ScrollVelocity[]
----@field AddTimingPoints? TimingPoint[]
----@field RemoveTimingPoints? TimingPoint[]
+---@field aSVs? ScrollVelocity[] | [ScrollVelocity[], ScrollGroup] -- Creates the ScrollVelocities given in the table.
+---@field rSVs? ScrollVelocity[] -- Removes the ScrollVelocities given in the table.
+---@field aTPs? TimingPoint[] -- Creates the TimingPoints given in the table.
+---@field rTPs? TimingPoint[] -- Removes the TimingPoints given in the table.
 --@field ChangePreviewTime? integer
 --@field ChangeTimingPointOffset? [TimingPoint, number]
 --@field ChangeTimingPointBpm? [TimingPoint, number]
@@ -30,14 +30,14 @@
 --@field ChangeScrollVelocityMultipliers? [ScrollVelocity[], number]
 --@field ApplyOffset? integer
 --@field ResnapHitObjects? [integer[], HitObject[]] | [integer[], HitObject[], boolean]---@field ReverseHitObjects? HitObject[]
----@field AddBookmarks? Bookmark[]
+---@field aBMs? Bookmark[] -- Creates the Bookmarks given in the table.
 --@field EditBookmark? [Bookmark, string]
----@field RemoveBookmarks? Bookmark[]
+---@field rBMs? Bookmark[]
 --@field ChangeBookmarkOffsets? [Bookmark[], integer]
----@field CreateTimingGroup? [string, ScrollGroup, HitObject[]]
----@field RemoveTimingGroup? [string]
+---@field aTG? [string, ScrollGroup, HitObject[]] -- Creates the ScrollGroup given.
+---@field rTG? [string] -- Removes the ScrollGroup given its id.
 --@field RenameTimingGroup? [string, string]
 --@field MoveObjectsToTimingGroup? [HitObject[], string]
 --@field ColorTimingGroup? [string, integer, integer, integer]
----@field AddScrollSpeedFactors? ScrollSpeedFactor[] | [ScrollSpeedFactor[], ScrollGroup]
----@field RemoveScrollSpeedFactors? ScrollSpeedFactor[]
+---@field aSSFs? ScrollSpeedFactor[] | [ScrollSpeedFactor[], ScrollGroup] -- Creates the ScrollSpeedFactors given in the table.
+---@field rSSFs? ScrollSpeedFactor[] -- Removes the ScrollSpeedFactors given in the table.
