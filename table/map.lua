@@ -1,5 +1,5 @@
 ---Transforms an array element-wise using a given function.
----@generic T: string | number | boolean
+---@generic T
 ---@generic U
 ---@param tbl T[]
 ---@param fn fun(element: T, idx?: number): U
