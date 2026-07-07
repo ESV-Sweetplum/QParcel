@@ -5,9 +5,7 @@
 ---@param valArr U[]
 ---@return { [T]: U } tbl
 function table.assign(keyArr, valArr)
-    if #valArr > #keyArr then
-        valArr = table.slice(valArr, 1, #keyArr)
-    end
+    if #valArr > #keyArr then valArr = table.slice(valArr, 1, #keyArr) end
     local tbl = {}
     for i = 1, #keyArr do
         tbl[keyArr[i]] = valArr[i]

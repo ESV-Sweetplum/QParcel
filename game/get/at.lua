@@ -22,7 +22,7 @@ function game.get.snapAt(time, dontPrintInaccuracy)
     local barLength = 60000 / game.get.timingPointAt(state.SongTime).Bpm
 
     local distanceAbovePrev = time - previousBar
-    if (distanceAbovePrev <= 5 or distanceAbovePrev >= barLength - 5) then return 1 end
+    if distanceAbovePrev <= 5 or distanceAbovePrev >= barLength - 5 then return 1 end
 
     local minSnapTime = barLength / MAX_SNAP
     local checkingTime = 0
@@ -34,7 +34,7 @@ function game.get.snapAt(time, dontPrintInaccuracy)
         index = index + 1
     end
 
-    if (math.abs(minSnapTime * (index + 1) - distanceAbovePrev) < math.abs(minSnapTime * index - distanceAbovePrev)) then
+    if math.abs(minSnapTime * (index + 1) - distanceAbovePrev) < math.abs(minSnapTime * index - distanceAbovePrev) then
         index = index + 1
     end
 
@@ -44,14 +44,14 @@ function game.get.snapAt(time, dontPrintInaccuracy)
     local div = index
     local remainder = -1
 
-    while (remainder ~= 0) do
+    while remainder ~= 0 do
         remainder = divisor % div
         divisor = div
         div = remainder
     end
 
-    if (math.floor(MAX_SNAP / divisor) ~= MAX_SNAP / divisor) then return 5 end
-    if (MAX_SNAP / divisor > 16) then return 5 end
+    if math.floor(MAX_SNAP / divisor) ~= MAX_SNAP / divisor then return 5 end
+    if MAX_SNAP / divisor > 16 then return 5 end
 
     return MAX_SNAP / divisor
 end

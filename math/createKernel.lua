@@ -1,6 +1,6 @@
 function math.createKernel(kernelType, parameters)
     kernelType = kernelType:lower()
-    if (kernelType == 'gaussian') then
+    if kernelType == 'gaussian' then
         local sigma = parameters.sigma
         local radius = math.ceil(sigma * 3)
         local kernel = {}

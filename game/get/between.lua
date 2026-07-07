@@ -51,7 +51,7 @@ function game.get.ssfsBetweenOffsets(startOffset, endOffset, includeEnd, dontSor
     else
         for _, ssf in ipairs(map.ScrollSpeedFactors) do
             local ssfIsInRange = ssf.StartTime >= startOffset and ssf.StartTime < endOffset
-            if (includeEnd and ssf.StartTime == endOffset) then ssfIsInRange = true end
+            if includeEnd and ssf.StartTime == endOffset then ssfIsInRange = true end
             if ssfIsInRange then table.insert(ssfsBetweenOffsets, ssf) end
         end
     end
@@ -69,7 +69,7 @@ function game.get.svsBetweenOffsets(startOffset, endOffset, includeEnd, dontSort
     local svsBetweenOffsets = {} ---@type ScrollVelocity[]
     for _, sv in ipairs(map.ScrollVelocities) do
         local svIsInRange = sv.StartTime >= startOffset and sv.StartTime < endOffset
-        if (includeEnd and sv.StartTime == endOffset) then svIsInRange = true end
+        if includeEnd and sv.StartTime == endOffset then svIsInRange = true end
         if svIsInRange then table.insert(svsBetweenOffsets, sv) end
     end
     if dontSort then return svsBetweenOffsets end

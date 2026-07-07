@@ -9,7 +9,7 @@ function table.searchClosest(tbl, item, searchMode)
 
     while rightIdx - leftIdx > 1 do
         local middleIdx = math.floor((leftIdx + rightIdx) * 0.5)
-        if (item >= tbl[middleIdx]) then
+        if item >= tbl[middleIdx] then
             leftIdx = middleIdx
         else
             rightIdx = middleIdx
@@ -19,7 +19,7 @@ function table.searchClosest(tbl, item, searchMode)
     local leftDifference = item - tbl[leftIdx]
     local rightDifference = tbl[rightIdx] - item
 
-    if ((leftDifference < rightDifference or searchMode == 1) and searchMode ~= 2) then
+    if (leftDifference < rightDifference or searchMode == 1) and searchMode ~= 2 then
         return tbl[leftIdx], leftIdx
     else
         return tbl[rightIdx], rightIdx

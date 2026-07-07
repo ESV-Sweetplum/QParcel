@@ -15,7 +15,7 @@ function pluralize(str, val, pos)
     end
     local finalStrTbl = { str, 's' }
     if math.abs(val) == 1 then return str .. strEnding end
-    if (str == str:upper()) then return str .. 's' .. strEnding end
+    if str == str:upper() then return str .. 's' .. strEnding end
     local lastLetter = str:sub(-1):upper()
     local secondToLastLetter = str:charAt(-2):upper()
     if table.contains({ 'I', 'E' }, secondToLastLetter) and lastLetter == 'X' then
@@ -42,6 +42,4 @@ end
 ---@param strP string The string to be returned if `val` is plural.
 ---@param val number The value, or count, of the noun, which will determine if it should be plural.
 ---@return string pluralizedStr A new string that is pluralized if `val ~= 1`.
-function pluralizeExplicit(str, strP, val)
-    return val == 1 and str or strP
-end
+function pluralizeExplicit(str, strP, val) return val == 1 and str or strP end

@@ -6,7 +6,7 @@ require('packages.string.charAt')
 function string.removeTrailingTag(str)
     local newStr = {}
     for i = 1, str:len() do
-        if (str:charAt(i) == '#' and str:charAt(i + 1) == '#') then break end
+        if str:charAt(i) == '#' and str:charAt(i + 1) == '#' then break end
         table.insert(newStr, str:charAt(i))
     end
 

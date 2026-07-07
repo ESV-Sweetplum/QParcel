@@ -5,18 +5,22 @@ require('packages.math.toNumber')
 ---@param str string
 ---@return any
 function table.parse(str)
-    if (str == 'FALSE' or str == 'TRUE') then return str == 'TRUE' end
+    if str == 'FALSE' or str == 'TRUE' then return str == 'TRUE' end
     if str:charAt(1) == '"' then return str:sub(2, -2) end
-    if (str:match('^%-?%d+$') or str:match('^%-?%d+E[%+%-]%d+$')) then return math.toNumber(str) end
-    if (str:match('^%-?%.%d+$') or str:match('^%-?%.%d+E[%+%-]%d+$')) then return math.toNumber(str) end
-    if (str:match('^%-?%d+%.%d+$') or str:match('^%-?%d+%.%d+E[%+%-]%d+$')) then return math.toNumber(str) end
-    if (not table.contains({ '{', '[' }, str:charAt(1))) then
-        print('e!',
-            'Something really bad has happened with the parsing algorithm weewooweewoo please report this to the Discord thanks!!!!!!!!!')
+    if str:match('^%-?%d+$') or str:match('^%-?%d+E[%+%-]%d+$') then return math.toNumber(str) end
+    if str:match('^%-?%.%d+$') or str:match('^%-?%.%d+E[%+%-]%d+$') then return math.toNumber(str) end
+    if str:match('^%-?%d+%.%d+$') or str:match('^%-?%d+%.%d+E[%+%-]%d+$') then return math.toNumber(str) end
+    if not table.contains({ '{', '[' }, str:charAt(1)) then
+        print(
+            'e!',
+            'Something really bad has happened with the parsing algorithm weewooweewoo please report this to the Discord thanks!!!!!!!!!'
+        )
         error(str)
         return str
     end
-    if (str:charAt(1) == '{' and str:charAt(2) == '}') or (str:charAt(1) == '[' and str:charAt(2) == ']') then return {} end
+    if (str:charAt(1) == '{' and str:charAt(2) == '}') or (str:charAt(1) == '[' and str:charAt(2) == ']') then
+        return {}
+    end
     local tableType = str:charAt(1) == '[' and 'arr' or 'dict'
     local tbl = {}
     local terms = {}
@@ -26,17 +30,11 @@ function table.parse(str)
         local depth = nestedTableFactor
         local searchIdx = 2 + nestedTableFactor
         local inQuotes = false
-        while (searchIdx < str:len()) do
-            if (str:charAt(searchIdx) == '"') then
-                inQuotes = not inQuotes
-            end
-            if (table.contains({ ']', '}' }, str:charAt(searchIdx)) and not inQuotes) then
-                depth = depth - 1
-            end
-            if (table.contains({ '[', '{' }, str:charAt(searchIdx)) and not inQuotes) then
-                depth = depth + 1
-            end
-            if ((str:charAt(searchIdx) == ',' or nestedTableFactor == 1) and not inQuotes and depth == 0) then break end
+        while searchIdx < str:len() do
+            if str:charAt(searchIdx) == '"' then inQuotes = not inQuotes end
+            if table.contains({ ']', '}' }, str:charAt(searchIdx)) and not inQuotes then depth = depth - 1 end
+            if table.contains({ '[', '{' }, str:charAt(searchIdx)) and not inQuotes then depth = depth + 1 end
+            if (str:charAt(searchIdx) == ',' or nestedTableFactor == 1) and not inQuotes and depth == 0 then break end
             searchIdx = searchIdx + 1
         end
         table.insert(terms, str:sub(2, searchIdx + nestedTableFactor - 1))

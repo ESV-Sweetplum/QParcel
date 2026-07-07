@@ -4,9 +4,7 @@
 ---@param variables { [string]: any } The key-value table to get data for.
 function cache.load(listName, variables)
     for key, _ in pairs(variables) do
-        if (state.GetValue(listName .. key) ~= nil) then
-            variables[key] = state.GetValue(listName .. key)
-        end
+        if state.GetValue(listName .. key) ~= nil then variables[key] = state.GetValue(listName .. key) end
     end
 end
 

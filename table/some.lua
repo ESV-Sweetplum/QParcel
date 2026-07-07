@@ -5,7 +5,7 @@
 ---@return boolean
 function table.some(tbl, fn)
     for _, v in ipairs(tbl) do
-        if (fn(v)) then return true end
+        if fn(v) then return true end
     end
 
     return false

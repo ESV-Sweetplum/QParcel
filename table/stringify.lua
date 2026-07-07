@@ -4,9 +4,9 @@ require('packages.table.keys')
 ---@param var any
 ---@return string
 function table.stringify(var)
-    if (type(var) == 'boolean') then return var and 'TRUE' or 'FALSE' end
-    if (type(var) == 'string') then return '"' .. var .. '"' end
-    if (type(var) == 'number') then return var end
+    if type(var) == 'boolean' then return var and 'TRUE' or 'FALSE' end
+    if type(var) == 'string' then return '"' .. var .. '"' end
+    if type(var) == 'number' then return var end
     if type(var) ~= 'table' then return 'UNKNOWN' end
     if var[1] ~= nil then
         local str = '['
@@ -15,7 +15,7 @@ function table.stringify(var)
         end
         return str:sub(1, -2) .. ']'
     end -- from below, must be a key-value table
-    if (not truthy(table.keys(var))) then return '[]' end
+    if not truthy(table.keys(var)) then return '[]' end
     local str = '{'
     for k, v in pairs(var) do
         str = str .. k .. '=' .. table.stringify(v) .. ','

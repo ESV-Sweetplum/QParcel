@@ -6,13 +6,13 @@
 ---@return number
 function math.wrap(n, lowerBound, upperBound, discrete)
     if upperBound <= lowerBound then return n end
-    if (n >= lowerBound and n <= upperBound) then return n end
+    if n >= lowerBound and n <= upperBound then return n end
     local additionFactor = math.toNumber(discrete)
     local diff = upperBound - lowerBound
-    while (n < lowerBound) do
+    while n < lowerBound do
         n = n + diff + additionFactor
     end
-    while (n > upperBound) do
+    while n > upperBound do
         n = n - diff - additionFactor
     end
     return n

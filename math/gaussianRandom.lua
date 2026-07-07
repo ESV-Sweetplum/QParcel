@@ -8,9 +8,11 @@ function math.gaussianRandom(mean, stdDev, withinStdDevCount)
     if stdDev == 0 then return mean, mean end
 
     local output, output2 = nil, 0
-    while (not output or math.abs(output - mean) / stdDev > withinStdDevCount) do
+    while not output or math.abs(output - mean) / stdDev > withinStdDevCount do
         local randomRadius = math.random()
-        while (randomRadius == 0) do randomRadius = math.random() end -- Avoids math.random outputting exactly 0
+        while randomRadius == 0 do
+            randomRadius = math.random()
+        end -- Avoids math.random outputting exactly 0
         local R = math.sqrt(-2 * math.log(randomRadius))
         local theta = 2 * math.pi * math.random()
         output, output2 = R * math.cos(theta) * stdDev + mean, R * math.sin(theta) * stdDev + mean

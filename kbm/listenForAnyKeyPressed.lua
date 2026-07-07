@@ -14,9 +14,7 @@ function kbm.listenForAnyKeyPressed()
     if isAltHeld then table.insert(prefixes, 'Alt') end
 
     for i = 65, 90 do
-        if (utils.IsKeyPressed(i)) then
-            key = i
-        end
+        if utils.IsKeyPressed(i) then key = i end
     end
 
     return prefixes, key

@@ -12,13 +12,9 @@ function table.validate(checkList, tbl, extrapolateData, inferTypes)
     local tableKeys = table.keys(tbl)
     local outputTable = {}
     for _, key in ipairs(validKeys) do
-        if (table.contains(tableKeys, key)) then
-            outputTable[key] = tbl[key]
-        end
-        if (not table.contains(tableKeys, key) and extrapolateData) then
-            outputTable[key] = checkList[key]
-        end
-        if (inferTypes and outputTable[key]) then
+        if table.contains(tableKeys, key) then outputTable[key] = tbl[key] end
+        if not table.contains(tableKeys, key) and extrapolateData then outputTable[key] = checkList[key] end
+        if inferTypes and outputTable[key] then
             outputTable[key] = table.infer(outputTable[key], type(checkList[key])) or outputTable[key]
         end
     end

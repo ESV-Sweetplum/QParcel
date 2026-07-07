@@ -32,12 +32,12 @@ function math.interpolateBasic(pointList)
         local p2 = pointList[i + 1]
         local p3 = pointList[i + 2]
 
-        if (math.abs(p2 - p1) < 1e-5) then
+        if math.abs(p2 - p1) < 1e-5 then
             table.insert(functionTable, function() return p1 end)
             pastDerivative = 0
             goto nextGroup
-        elseif ((p3 - p2) * (p2 - p1) <= 0) then -- p2Prime should be 0.
-            if not pastDerivative then           -- Ensure past derivative is nonnegative and is as large as possible by setting the discriminant to 0.
+        elseif (p3 - p2) * (p2 - p1) <= 0 then -- p2Prime should be 0.
+            if not pastDerivative then -- Ensure past derivative is nonnegative and is as large as possible by setting the discriminant to 0.
                 pastDerivative = 3 * (p2 - p1)
             end
             local p1Prime = pastDerivative
@@ -49,7 +49,7 @@ function math.interpolateBasic(pointList)
             table.insert(functionTable, function(x) return a * x * x * x + b * x * x + c * x + d end)
 
             pastDerivative = 0
-        else                       -- Cubic interpolation of 3 points with missing degree of freedom accounted for via the derivative at p1.
+        else -- Cubic interpolation of 3 points with missing degree of freedom accounted for via the derivative at p1.
             if not pastDerivative then
                 pastDerivative = 0 -- Initialize ramping cubic, ensuring monotonicity within p1-p2.
             end
@@ -79,12 +79,10 @@ function math.interpolateBasic(pointList)
     table.insert(functionTable, function(x) return a * x * x * x + b * x * x + c * x + d end)
 
     return function(x)
-        if (x < 0 or x > #functionTable) then return 1e10 end
+        if x < 0 or x > #functionTable then return 1e10 end
         local fracX = math.frac(x)
         local tolerance = 1e-5
-        if (fracX < tolerance or fracX > 1 - tolerance) then
-            return pointList[math.round(x) + 1]
-        end
+        if fracX < tolerance or fracX > 1 - tolerance then return pointList[math.round(x) + 1] end
 
         local usedFn = functionTable[math.min(math.floor(x) + 1, #functionTable)]
 

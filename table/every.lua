@@ -5,7 +5,7 @@
 ---@return boolean
 function table.every(tbl, fn)
     for _, v in ipairs(tbl) do
-        if (not fn(v)) then return false end
+        if not fn(v) then return false end
     end
 
     return true
