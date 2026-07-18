@@ -15,7 +15,7 @@ function game.get.uniqueNoteOffsetsBetweenSelected(includeLN)
 end
 
 ---Returns a list of unique offsets (in increasing order) of selected notes [Table]
----@return number[]
+---@return integer[]
 function game.get.uniqueSelectedNoteOffsets()
     local offsets = {}
     for _, ho in pairs(state.SelectedHitObjects) do
@@ -44,7 +44,7 @@ end
 ---@param startOffset number
 ---@param endOffset number
 ---@param includeLN? boolean
----@return number[]
+---@return integer[]
 function game.get.uniqueNoteOffsetsBetween(startOffset, endOffset, includeLN)
     local noteOffsetsBetween = {}
     includeLN = includeLN or _QParcelConfig.useEndTimeOffsets
