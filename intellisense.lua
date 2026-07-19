@@ -737,31 +737,31 @@ function actions.ChangeTimingGroupColor(id, r, g, b) end
 ---@param id string The id of the [timing group](lua://ScrollGroup) to move the [hit objects](lua://HitObject) to, which must be obtained via [`state.SelectedScrollGroup`](lua://state.SelectedScrollGroup) or something similar.
 function actions.MoveObjectsToTimingGroup(hos, id) end
 
-state                          = {}
+state = {}
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The current song time in milliseconds.
-state.SongTime                 = 0.0 ---@type number
+state.SongTime = 0.0 ---@type number
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### A list of all [hit objects](lua://HitObject) within the current selection.
 ---#### If multiple [hit objects](lua://HitObject) are selected at once, the table will be in order of their `StartTime`. If they were selected one at a time using <kbd>Ctrl-Click</kbd>, then the table will be in order of their selection order.
-state.SelectedHitObjects       = {} ---@type HitObject[]
+state.SelectedHitObjects = {} ---@type HitObject[]
 
 ---#### The `id`, or name, of the current selected [scroll group](lua://ScrollGroup).
-state.SelectedScrollGroupId    = '$Default' ---@type string
+state.SelectedScrollGroupId = '$Default' ---@type string
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The current selected [scroll group](lua://ScrollGroup).
-state.SelectedScrollGroup      = {} ---@type ScrollGroup
+state.SelectedScrollGroup = {} ---@type ScrollGroup
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The nearest [bookmark](lua://Bookmark) before the current `state.SongTime`.
-state.CurrentBookmark          = {} ---@type Bookmark
+state.CurrentBookmark = {} ---@type Bookmark
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The nearest [scroll velocity](lua://ScrollVelocity) before the current `state.SongTime`.
-state.CurrentScrollVelocity    = {} ---@type ScrollVelocity
+state.CurrentScrollVelocity = {} ---@type ScrollVelocity
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The nearest [scroll speed factor](lua://ScrollSpeedFactor) before the current `state.SongTime`.
@@ -769,34 +769,34 @@ state.CurrentScrollSpeedFactor = {} ---@type ScrollSpeedFactor
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The nearest [timing point](lua://TimingPoint) before the current `state.SongTime`.
-state.CurrentTimingPoint       = {} ---@type TimingPoint
+state.CurrentTimingPoint = {} ---@type TimingPoint
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The current selected [editor layer](lua://EditorLayer).
-state.CurrentLayer             = {} ---@type EditorLayer
+state.CurrentLayer = {} ---@type EditorLayer
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The selected snap's denominator. (e.g. 1/3 snap returns `3`, etc.)
-state.CurrentSnap              = 1 ---@type integer
+state.CurrentSnap = 1 ---@type integer
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The time elapsed between the last frame and the current frame, in milliseconds.
-state.DeltaTime                = 0 ---@type number
+state.DeltaTime = 0 ---@type number
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The current unix timestamp.
-state.UnixTime                 = 0 ---@type integer
+state.UnixTime = 0 ---@type integer
 
 ---#### MUST BE SET MANUALLY - Indicates to the game that the window is hovered.
-state.IsWindowHovered          = false ---@type boolean
+state.IsWindowHovered = false ---@type boolean
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The current ImGui scale.
-state.Scale                    = 1 ---@type number
+state.Scale = 1 ---@type number
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### The size of the Quaver window.
-state.WindowSize               = { 69, 69 } ---@type [number, number]
+state.WindowSize = { 69, 69 } ---@type [number, number]
 
 ---##### (READ-ONLY) (EXISTS BEFORE RUNTIME)
 ---#### Stores a value that can be retrieved by [`state.GetValue`](lua://state.GetValue). Mainly used to persist data between hot-reloads.
@@ -945,63 +945,63 @@ function utils.GenerateTimingGroupId(prefix) end
 ---@nodiscard
 function utils.GenerateTimingGroupIds(count, prefix) end
 
-map                       = {}
+map = {}
 
 ---##### (READ-ONLY)
 ---#### Returns `1` in 4k, `2` in 7k.
-map.Mode                  = 1 ---@type number
+map.Mode = 1 ---@type number
 
 ---##### (READ-ONLY)
 ---#### `true` if BPM does not affect [scroll velocity](lua://ScrollVelocity).
-map.Normalized            = true ---@type boolean
+map.Normalized = true ---@type boolean
 
 ---##### (READ-ONLY)
 ---#### A table of all [scroll velocities](lua://ScrollVelocity) in the current timing group.
-map.ScrollVelocities      = {} ---@type ScrollVelocity[]
+map.ScrollVelocities = {} ---@type ScrollVelocity[]
 
 ---##### (READ-ONLY)
 ---#### A table of all [scroll speed factors](lua://ScrollSpeedFactor) in the current timing group.
-map.ScrollSpeedFactors    = {} ---@type ScrollSpeedFactor[]
+map.ScrollSpeedFactors = {} ---@type ScrollSpeedFactor[]
 
 ---##### (READ-ONLY)
 ---#### A table of all [timing groups](lua://ScrollGroup) in the map, where the keys are the identifiers of the scroll group.
-map.TimingGroups          = {} ---@type { [string]: ScrollGroup }
+map.TimingGroups = {} ---@type { [string]: ScrollGroup }
 
 ---##### (READ-ONLY)
 ---#### The default [scroll group](lua://ScrollGroup).
-map.DefaultScrollGroup    = {} ---@type ScrollGroup
+map.DefaultScrollGroup = {} ---@type ScrollGroup
 
 ---##### (READ-ONLY)
 ---#### The global [scroll group](lua://ScrollGroup).
-map.GlobalScrollGroup     = {} ---@type ScrollGroup
+map.GlobalScrollGroup = {} ---@type ScrollGroup
 
 ---##### (READ-ONLY)
 ---#### A table of all [hit objects](lua://HitObject) in the map.
-map.HitObjects            = {} ---@type HitObject[]
+map.HitObjects = {} ---@type HitObject[]
 
 ---##### (READ-ONLY)
 ---#### A table of all [timing points](lua://TimingPoint) in the map.
-map.TimingPoints          = {} ---@type TimingPoint[]
+map.TimingPoints = {} ---@type TimingPoint[]
 
 ---##### (READ-ONLY)
 ---#### A table of all [editor layers](lua://EditorLayer) in the map.
-map.EditorLayers          = {} ---@type EditorLayer[]
+map.EditorLayers = {} ---@type EditorLayer[]
 
 ---##### (READ-ONLY)
 ---#### A table of all [bookmarks](lua://Bookmark) in the map.
-map.Bookmarks             = {} ---@type Bookmark[]
+map.Bookmarks = {} ---@type Bookmark[]
 
 ---##### (READ-ONLY)
 ---#### The default [editor layer](lua://EditorLayer).
-map.DefaultLayer          = {} ---@type EditorLayer
+map.DefaultLayer = {} ---@type EditorLayer
 
 ---##### (READ-ONLY)
 ---#### The length of the song, in milliseconds.
-map.TrackLength           = 0 ---@type number
+map.TrackLength = 0 ---@type number
 
 ---##### (READ-ONLY)
 ---#### `true` if the "Legacy LN Rendering" option is enabled.
-map.LegacyLNRendering     = false ---@type boolean
+map.LegacyLNRendering = false ---@type boolean
 
 ---##### (READ-ONLY)
 ---#### The initial [scroll velocity](lua://ScrollVelocity) multiplier of the current [scroll group](lua://ScrollGroup). Defaults to 1.
@@ -1232,7 +1232,7 @@ function print(...) end
 function print(notificationType, ...) end
 
 ---@enum EditorActionType
-action_type    = {
+action_type = {
     None = -1,
     PlaceHitObject = 0,
     RemoveHitObject = 1,
@@ -1301,187 +1301,187 @@ hitobject_type = {
     Mine = 1,
 }
 
----@enum ColoringMode
-coloring_mode  = {
+---@enum ColoringType
+coloring_type = {
     None = 0,
     Layer = 1,
     TimingGroup = 2,
 }
 
 ---@enum Key
-keys           = {
-    None = 0,                  -- Reserved.
-    Back = 8,                  -- BACKSPACE key.
-    Tab = 9,                   -- TAB key.
-    Enter = 13,                -- ENTER key.
-    CapsLock = 20,             -- CAPS LOCK key.
-    Escape = 27,               -- ESC key.
-    Space = 32,                -- SPACEBAR key.
-    PageUp = 33,               -- PAGE UP key.
-    PageDown = 34,             -- PAGE DOWN key.
-    End = 35,                  -- END key.
-    Home = 36,                 -- HOME key.
-    Left = 37,                 -- LEFT ARROW key.
-    Up = 38,                   -- UP ARROW key.
-    Right = 39,                -- RIGHT ARROW key.
-    Down = 40,                 -- DOWN ARROW key.
-    Select = 41,               -- SELECT key.
-    Print = 42,                -- PRINT key.
-    Execute = 43,              -- EXECUTE key.
-    PrintScreen = 44,          -- PRINT SCREEN key.
-    Insert = 45,               -- INS key.
-    Delete = 46,               -- DEL key.
-    Help = 47,                 -- HELP key.
-    D0 = 48,                   -- Used for miscellaneous characters; it can vary by keyboard.
-    D1 = 49,                   -- Used for miscellaneous characters; it can vary by keyboard.
-    D2 = 50,                   -- Used for miscellaneous characters; it can vary by keyboard.
-    D3 = 51,                   -- Used for miscellaneous characters; it can vary by keyboard.
-    D4 = 52,                   -- Used for miscellaneous characters; it can vary by keyboard.
-    D5 = 53,                   -- Used for miscellaneous characters; it can vary by keyboard.
-    D6 = 54,                   -- Used for miscellaneous characters; it can vary by keyboard.
-    D7 = 55,                   -- Used for miscellaneous characters; it can vary by keyboard.
-    D8 = 56,                   -- Used for miscellaneous characters; it can vary by keyboard.
-    D9 = 57,                   -- Used for miscellaneous characters; it can vary by keyboard.
-    A = 65,                    -- A key.
-    B = 66,                    -- B key.
-    C = 67,                    -- C key.
-    D = 68,                    -- D key.
-    E = 69,                    -- E key.
-    F = 70,                    -- F key.
-    G = 71,                    -- G key.
-    H = 72,                    -- H key.
-    I = 73,                    -- I key.
-    J = 74,                    -- J key.
-    K = 75,                    -- K key.
-    L = 76,                    -- L key.
-    M = 77,                    -- M key.
-    N = 78,                    -- N key.
-    O = 79,                    -- O key.
-    P = 80,                    -- P key.
-    Q = 81,                    -- Q key.
-    R = 82,                    -- R key.
-    S = 83,                    -- S key.
-    T = 84,                    -- T key.
-    U = 85,                    -- U key.
-    V = 86,                    -- V key.
-    W = 87,                    -- W key.
-    X = 88,                    -- X key.
-    Y = 89,                    -- Y key.
-    Z = 90,                    -- Z key.
-    LeftWindows = 91,          -- Left Windows key.
-    RightWindows = 92,         -- Right Windows key.
-    Apps = 93,                 -- Applications key.
-    Sleep = 95,                -- Computer Sleep key.
-    NumPad0 = 96,              -- Numeric keypad 0 key.
-    NumPad1 = 97,              -- Numeric keypad 1 key.
-    NumPad2 = 98,              -- Numeric keypad 2 key.
-    NumPad3 = 99,              -- Numeric keypad 3 key.
-    NumPad4 = 100,             -- Numeric keypad 4 key.
-    NumPad5 = 101,             -- Numeric keypad 5 key.
-    NumPad6 = 102,             -- Numeric keypad 6 key.
-    NumPad7 = 103,             -- Numeric keypad 7 key.
-    NumPad8 = 104,             -- Numeric keypad 8 key.
-    NumPad9 = 105,             -- Numeric keypad 9 key.
-    Multiply = 106,            -- Multiply key.
-    Add = 107,                 -- Add key.
-    Separator = 108,           -- Separator key.
-    Subtract = 109,            -- Subtract key.
-    Decimal = 110,             -- Decimal key.
-    Divide = 111,              -- Divide key.
-    F1 = 112,                  -- F1 key.
-    F2 = 113,                  -- F2 key.
-    F3 = 114,                  -- F3 key.
-    F4 = 115,                  -- F4 key.
-    F5 = 116,                  -- F5 key.
-    F6 = 117,                  -- F6 key.
-    F7 = 118,                  -- F7 key.
-    F8 = 119,                  -- F8 key.
-    F9 = 120,                  -- F9 key.
-    F10 = 121,                 -- F10 key.
-    F11 = 122,                 -- F11 key.
-    F12 = 123,                 -- F12 key.
-    F13 = 124,                 -- F13 key.
-    F14 = 125,                 -- F14 key.
-    F15 = 126,                 -- F15 key.
-    F16 = 127,                 -- F16 key.
-    F17 = 128,                 -- F17 key.
-    F18 = 129,                 -- F18 key.
-    F19 = 130,                 -- F19 key.
-    F20 = 131,                 -- F20 key.
-    F21 = 132,                 -- F21 key.
-    F22 = 133,                 -- F22 key.
-    F23 = 134,                 -- F23 key.
-    F24 = 135,                 -- F24 key.
-    NumLock = 144,             -- NUM LOCK key.
-    Scroll = 145,              -- SCROLL LOCK key.
-    LeftShift = 160,           -- Left SHIFT key.
-    RightShift = 161,          -- Right SHIFT key.
-    LeftControl = 162,         -- Left CONTROL key.
-    RightControl = 163,        -- Right CONTROL key.
-    LeftAlt = 164,             -- Left ALT key.
-    RightAlt = 165,            -- Right ALT key.
-    BrowserBack = 166,         -- Browser Back key.
-    BrowserForward = 167,      -- Browser Forward key.
-    BrowserRefresh = 168,      -- Browser Refresh key.
-    BrowserStop = 169,         -- Browser Stop key.
-    BrowserSearch = 170,       -- Browser Search key.
-    BrowserFavorites = 171,    -- Browser Favorites key.
-    BrowserHome = 172,         -- Browser Start and Home key.
-    VolumeMute = 173,          -- Volume Mute key.
-    VolumeDown = 174,          -- Volume Down key.
-    VolumeUp = 175,            -- Volume Up key.
-    MediaNextTrack = 176,      -- Next Track key.
-    MediaPreviousTrack = 177,  -- Previous Track key.
-    MediaStop = 178,           -- Stop Media key.
-    MediaPlayPause = 179,      -- Play/Pause Media key.
-    LaunchMail = 180,          -- Start Mail key.
-    SelectMedia = 181,         -- Select Media key.
-    LaunchApplication1 = 182,  -- Start Application 1 key.
-    LaunchApplication2 = 183,  -- Start Application 2 key.
-    OemSemicolon = 186,        -- The OEM Semicolon key on a US standard keyboard.
-    OemPlus = 187,             -- For any country/region, the '+' key.
-    OemComma = 188,            -- For any country/region, the ',' key.
-    OemMinus = 189,            -- For any country/region, the '-' key.
-    OemPeriod = 190,           -- For any country/region, the '.' key.
-    OemQuestion = 191,         -- The OEM question mark key on a US standard keyboard.
-    OemTilde = 192,            -- The OEM tilde key on a US standard keyboard.
-    OemColon = 193,            -- :
-    OemExclamationMark = 194,  -- !
-    PunctuatedU = 195,         -- ù
-    Asterisk = 196,            -- *
-    Caret = 197,               -- ^
-    DollarSign = 198,          -- $
+keys = {
+    None = 0, -- Reserved.
+    Back = 8, -- BACKSPACE key.
+    Tab = 9, -- TAB key.
+    Enter = 13, -- ENTER key.
+    CapsLock = 20, -- CAPS LOCK key.
+    Escape = 27, -- ESC key.
+    Space = 32, -- SPACEBAR key.
+    PageUp = 33, -- PAGE UP key.
+    PageDown = 34, -- PAGE DOWN key.
+    End = 35, -- END key.
+    Home = 36, -- HOME key.
+    Left = 37, -- LEFT ARROW key.
+    Up = 38, -- UP ARROW key.
+    Right = 39, -- RIGHT ARROW key.
+    Down = 40, -- DOWN ARROW key.
+    Select = 41, -- SELECT key.
+    Print = 42, -- PRINT key.
+    Execute = 43, -- EXECUTE key.
+    PrintScreen = 44, -- PRINT SCREEN key.
+    Insert = 45, -- INS key.
+    Delete = 46, -- DEL key.
+    Help = 47, -- HELP key.
+    D0 = 48, -- Used for miscellaneous characters; it can vary by keyboard.
+    D1 = 49, -- Used for miscellaneous characters; it can vary by keyboard.
+    D2 = 50, -- Used for miscellaneous characters; it can vary by keyboard.
+    D3 = 51, -- Used for miscellaneous characters; it can vary by keyboard.
+    D4 = 52, -- Used for miscellaneous characters; it can vary by keyboard.
+    D5 = 53, -- Used for miscellaneous characters; it can vary by keyboard.
+    D6 = 54, -- Used for miscellaneous characters; it can vary by keyboard.
+    D7 = 55, -- Used for miscellaneous characters; it can vary by keyboard.
+    D8 = 56, -- Used for miscellaneous characters; it can vary by keyboard.
+    D9 = 57, -- Used for miscellaneous characters; it can vary by keyboard.
+    A = 65, -- A key.
+    B = 66, -- B key.
+    C = 67, -- C key.
+    D = 68, -- D key.
+    E = 69, -- E key.
+    F = 70, -- F key.
+    G = 71, -- G key.
+    H = 72, -- H key.
+    I = 73, -- I key.
+    J = 74, -- J key.
+    K = 75, -- K key.
+    L = 76, -- L key.
+    M = 77, -- M key.
+    N = 78, -- N key.
+    O = 79, -- O key.
+    P = 80, -- P key.
+    Q = 81, -- Q key.
+    R = 82, -- R key.
+    S = 83, -- S key.
+    T = 84, -- T key.
+    U = 85, -- U key.
+    V = 86, -- V key.
+    W = 87, -- W key.
+    X = 88, -- X key.
+    Y = 89, -- Y key.
+    Z = 90, -- Z key.
+    LeftWindows = 91, -- Left Windows key.
+    RightWindows = 92, -- Right Windows key.
+    Apps = 93, -- Applications key.
+    Sleep = 95, -- Computer Sleep key.
+    NumPad0 = 96, -- Numeric keypad 0 key.
+    NumPad1 = 97, -- Numeric keypad 1 key.
+    NumPad2 = 98, -- Numeric keypad 2 key.
+    NumPad3 = 99, -- Numeric keypad 3 key.
+    NumPad4 = 100, -- Numeric keypad 4 key.
+    NumPad5 = 101, -- Numeric keypad 5 key.
+    NumPad6 = 102, -- Numeric keypad 6 key.
+    NumPad7 = 103, -- Numeric keypad 7 key.
+    NumPad8 = 104, -- Numeric keypad 8 key.
+    NumPad9 = 105, -- Numeric keypad 9 key.
+    Multiply = 106, -- Multiply key.
+    Add = 107, -- Add key.
+    Separator = 108, -- Separator key.
+    Subtract = 109, -- Subtract key.
+    Decimal = 110, -- Decimal key.
+    Divide = 111, -- Divide key.
+    F1 = 112, -- F1 key.
+    F2 = 113, -- F2 key.
+    F3 = 114, -- F3 key.
+    F4 = 115, -- F4 key.
+    F5 = 116, -- F5 key.
+    F6 = 117, -- F6 key.
+    F7 = 118, -- F7 key.
+    F8 = 119, -- F8 key.
+    F9 = 120, -- F9 key.
+    F10 = 121, -- F10 key.
+    F11 = 122, -- F11 key.
+    F12 = 123, -- F12 key.
+    F13 = 124, -- F13 key.
+    F14 = 125, -- F14 key.
+    F15 = 126, -- F15 key.
+    F16 = 127, -- F16 key.
+    F17 = 128, -- F17 key.
+    F18 = 129, -- F18 key.
+    F19 = 130, -- F19 key.
+    F20 = 131, -- F20 key.
+    F21 = 132, -- F21 key.
+    F22 = 133, -- F22 key.
+    F23 = 134, -- F23 key.
+    F24 = 135, -- F24 key.
+    NumLock = 144, -- NUM LOCK key.
+    Scroll = 145, -- SCROLL LOCK key.
+    LeftShift = 160, -- Left SHIFT key.
+    RightShift = 161, -- Right SHIFT key.
+    LeftControl = 162, -- Left CONTROL key.
+    RightControl = 163, -- Right CONTROL key.
+    LeftAlt = 164, -- Left ALT key.
+    RightAlt = 165, -- Right ALT key.
+    BrowserBack = 166, -- Browser Back key.
+    BrowserForward = 167, -- Browser Forward key.
+    BrowserRefresh = 168, -- Browser Refresh key.
+    BrowserStop = 169, -- Browser Stop key.
+    BrowserSearch = 170, -- Browser Search key.
+    BrowserFavorites = 171, -- Browser Favorites key.
+    BrowserHome = 172, -- Browser Start and Home key.
+    VolumeMute = 173, -- Volume Mute key.
+    VolumeDown = 174, -- Volume Down key.
+    VolumeUp = 175, -- Volume Up key.
+    MediaNextTrack = 176, -- Next Track key.
+    MediaPreviousTrack = 177, -- Previous Track key.
+    MediaStop = 178, -- Stop Media key.
+    MediaPlayPause = 179, -- Play/Pause Media key.
+    LaunchMail = 180, -- Start Mail key.
+    SelectMedia = 181, -- Select Media key.
+    LaunchApplication1 = 182, -- Start Application 1 key.
+    LaunchApplication2 = 183, -- Start Application 2 key.
+    OemSemicolon = 186, -- The OEM Semicolon key on a US standard keyboard.
+    OemPlus = 187, -- For any country/region, the '+' key.
+    OemComma = 188, -- For any country/region, the ',' key.
+    OemMinus = 189, -- For any country/region, the '-' key.
+    OemPeriod = 190, -- For any country/region, the '.' key.
+    OemQuestion = 191, -- The OEM question mark key on a US standard keyboard.
+    OemTilde = 192, -- The OEM tilde key on a US standard keyboard.
+    OemColon = 193, -- :
+    OemExclamationMark = 194, -- !
+    PunctuatedU = 195, -- ù
+    Asterisk = 196, -- *
+    Caret = 197, -- ^
+    DollarSign = 198, -- $
     OemCloseParenthesis = 199, -- )
-    Squared = 200,             -- ²
-    OemOpenBrackets = 219,     -- The OEM open bracket key on a US standard keyboard.
-    OemPipe = 220,             -- The OEM pipe key on a US standard keyboard.
-    OemCloseBrackets = 221,    -- The OEM close bracket key on a US standard keyboard.
-    OemQuotes = 222,           -- The OEM singled/double quote key on a US standard keyboard.
-    Oem8 = 223,                -- Used for miscellaneous characters; it can vary by keyboard.
-    OemBackslash = 226,        -- The OEM angle bracket or backslash key on the RT 102 key keyboard.
-    ProcessKey = 229,          -- IME PROCESS key.
-    Attn = 246,                -- Attn key.
-    Crsel = 247,               -- CrSel key.
-    Exsel = 248,               -- ExSel key.
-    EraseEof = 249,            -- Erase EOF key.
-    Play = 250,                -- Play key.
-    Zoom = 251,                -- Zoom key.
-    Pa1 = 253,                 -- PA1 key.
-    OemClear = 254,            -- CLEAR key.
-    ChatPadGreen = 0xCA,       -- Green ChatPad key.
-    ChatPadOrange = 0xCB,      -- Orange ChatPad key.
-    Pause = 0x13,              -- PAUSE key.
-    ImeConvert = 0x1c,         -- IME Convert key.
-    ImeNoConvert = 0x1d,       -- IME NoConvert key.
-    Kana = 0x15,               -- Kana key on Japanese keyboards.
-    Kanji = 0x19,              -- Kanji key on Japanese keyboards.
-    OemAuto = 0xf3,            -- OEM Auto key.
-    OemCopy = 0xf2,            -- OEM Copy key.
-    OemEnlW = 0xf4,            -- OEM Enlarge Window key.
+    Squared = 200, -- ²
+    OemOpenBrackets = 219, -- The OEM open bracket key on a US standard keyboard.
+    OemPipe = 220, -- The OEM pipe key on a US standard keyboard.
+    OemCloseBrackets = 221, -- The OEM close bracket key on a US standard keyboard.
+    OemQuotes = 222, -- The OEM singled/double quote key on a US standard keyboard.
+    Oem8 = 223, -- Used for miscellaneous characters; it can vary by keyboard.
+    OemBackslash = 226, -- The OEM angle bracket or backslash key on the RT 102 key keyboard.
+    ProcessKey = 229, -- IME PROCESS key.
+    Attn = 246, -- Attn key.
+    Crsel = 247, -- CrSel key.
+    Exsel = 248, -- ExSel key.
+    EraseEof = 249, -- Erase EOF key.
+    Play = 250, -- Play key.
+    Zoom = 251, -- Zoom key.
+    Pa1 = 253, -- PA1 key.
+    OemClear = 254, -- CLEAR key.
+    ChatPadGreen = 0xCA, -- Green ChatPad key.
+    ChatPadOrange = 0xCB, -- Orange ChatPad key.
+    Pause = 0x13, -- PAUSE key.
+    ImeConvert = 0x1c, -- IME Convert key.
+    ImeNoConvert = 0x1d, -- IME NoConvert key.
+    Kana = 0x15, -- Kana key on Japanese keyboards.
+    Kanji = 0x19, -- Kanji key on Japanese keyboards.
+    OemAuto = 0xf3, -- OEM Auto key.
+    OemCopy = 0xf2, -- OEM Copy key.
+    OemEnlW = 0xf4, -- OEM Enlarge Window key.
 }
 
 ---@enum HistoryType
-history_type   = {
+history_type = {
     New = 0,
     Redo = 1,
     Undo = 2,
@@ -2159,7 +2159,16 @@ function imgui.CreateVector4(values) end
 ---@param sz_drawvert integer
 ---@param sz_drawidx integer
 ---@return boolean
-function imgui.DebugCheckVersionAndDataLayout(version_str, sz_io, sz_style, sz_vec2, sz_vec4, sz_drawvert, sz_drawidx) end
+function imgui.DebugCheckVersionAndDataLayout(
+    version_str,
+    sz_io,
+    sz_style,
+    sz_vec2,
+    sz_vec4,
+    sz_drawvert,
+    sz_drawidx
+)
+end
 
 ---##### (READ-ONLY)
 ---@param idx ImGuiCol|0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|"Text"|"TextDisabled"|"WindowBg"|"ChildBg"|"PopupBg"|"Border"|"BorderShadow"|"FrameBg"|"FrameBgHovered"|"FrameBgActive"|"TitleBg"|"TitleBgActive"|"TitleBgCollapsed"|"MenuBarBg"|"ScrollbarBg"|"ScrollbarGrab"|"ScrollbarGrabHovered"|"ScrollbarGrabActive"|"CheckMark"|"SliderGrab"|"SliderGrabActive"|"Button"|"ButtonHovered"|"ButtonActive"|"Header"|"HeaderHovered"|"HeaderActive"|"Separator"|"SeparatorHovered"|"SeparatorActive"|"ResizeGrip"|"ResizeGripHovered"|"ResizeGripActive"|"TabHovered"|"Tab"|"TabSelected"|"TabSelectedOverline"|"TabDimmed"|"TabDimmedSelected"|"TabDimmedSelectedOverline"|"DockingPreview"|"DockingEmptyBg"|"PlotLines"|"PlotLinesHovered"|"PlotHistogram"|"PlotHistogramHovered"|"TableHeaderBg"|"TableBorderStrong"|"TableBorderLight"|"TableRowBg"|"TableRowBgAlt"|"TextLink"|"TextSelectedBg"|"DragDropTarget"|"NavHighlight"|"NavWindowingHighlight"|"NavWindowingDimBg"|"ModalWindowDimBg"|"COUNT"
@@ -2514,7 +2523,18 @@ function imgui.DragFloatRange2(label, v_current_min, v_current_max, v_speed, v_m
 ---@param format_max string
 ---@param flags ImGuiSliderFlags|integer|"None"|"AlwaysClamp"|"Logarithmic"|"NoRoundToFormat"|"NoInput"|"WrapAround"|"InvalidMask"
 ---@return boolean, number, number
-function imgui.DragFloatRange2(label, v_current_min, v_current_max, v_speed, v_min, v_max, format, format_max, flags) end
+function imgui.DragFloatRange2(
+    label,
+    v_current_min,
+    v_current_max,
+    v_speed,
+    v_min,
+    v_max,
+    format,
+    format_max,
+    flags
+)
+end
 
 ---##### (READ-ONLY)
 ---@param label string
@@ -4372,7 +4392,17 @@ function imgui.PlotHistogram(label, values, values_count, values_offset, overlay
 ---@param scale_min number
 ---@param scale_max number
 ---@param graph_size Vector2
-function imgui.PlotHistogram(label, values, values_count, values_offset, overlay_text, scale_min, scale_max, graph_size) end
+function imgui.PlotHistogram(
+    label,
+    values,
+    values_count,
+    values_offset,
+    overlay_text,
+    scale_min,
+    scale_max,
+    graph_size
+)
+end
 
 ---##### (READ-ONLY)
 ---@param label string
@@ -4384,8 +4414,17 @@ function imgui.PlotHistogram(label, values, values_count, values_offset, overlay
 ---@param scale_max number
 ---@param graph_size Vector2
 ---@param stride integer
-function imgui.PlotHistogram(label, values, values_count, values_offset, overlay_text, scale_min, scale_max, graph_size,
-                             stride)
+function imgui.PlotHistogram(
+    label,
+    values,
+    values_count,
+    values_offset,
+    overlay_text,
+    scale_min,
+    scale_max,
+    graph_size,
+    stride
+)
 end
 
 ---##### (READ-ONLY)
@@ -4454,8 +4493,17 @@ function imgui.PlotLines(label, values, values_count, values_offset, overlay_tex
 ---@param scale_max number
 ---@param graph_size Vector2
 ---@param stride integer
-function imgui.PlotLines(label, values, values_count, values_offset, overlay_text, scale_min, scale_max, graph_size,
-                         stride)
+function imgui.PlotLines(
+    label,
+    values,
+    values_count,
+    values_offset,
+    overlay_text,
+    scale_min,
+    scale_max,
+    graph_size,
+    stride
+)
 end
 
 ---##### (READ-ONLY)
