@@ -2,7 +2,7 @@ require('packages.table.contains')
 
 ---Returns true if the given key combo returns true depending on the given function (e.g. "Ctrl+Shift+L")
 ---@param keyCombo string
----@param type "down" | "pressed"
+---@param type "down" | "pressed" | "released" | "up"
 ---@return boolean
 function kbm.keyComboCheck(keyCombo, type)
     if imgui.IsAnyItemActive() or not keyCombo or keyCombo == 'NONE' then return false end
@@ -42,6 +42,8 @@ function kbm.keyComboCheck(keyCombo, type)
     local fnTable = {
         down = utils.IsKeyDown,
         pressed = utils.IsKeyPressed,
+        up = utils.IsKeyUp,
+        released = utils.IsKeyReleased,
     }
     return fnTable[type](keyReqNum)
 end
@@ -49,5 +51,8 @@ end
 function kbm.pressedKeyCombo(keyCombo) return kbm.keyComboCheck(keyCombo, 'pressed') end
 
 function kbm.holdingKeyCombo(keyCombo) return kbm.keyComboCheck(keyCombo, 'down') end
+function kbm.releasedKeyCombo(keyCombo) return kbm.keyComboCheck(keyCombo, 'released') end
+
+function kbm.notHoldingKeyCombo(keyCombo) return kbm.keyComboCheck(keyCombo, 'up') end
 
 kbm.executedKeyCombo = kbm.pressedKeyCombo
