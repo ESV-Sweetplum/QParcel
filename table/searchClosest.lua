@@ -19,6 +19,9 @@ function table.searchClosest(tbl, item, searchMode)
     local leftDifference = item - tbl[leftIdx]
     local rightDifference = tbl[rightIdx] - item
 
+    if leftDifference < 0 then return tbl[leftIdx], leftIdx end
+    if rightDifference < 0 then return tbl[rightIdx], rightIdx end
+
     if (leftDifference < rightDifference or searchMode == 1) and searchMode ~= 2 then
         return tbl[leftIdx], leftIdx
     else
