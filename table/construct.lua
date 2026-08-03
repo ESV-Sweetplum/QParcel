@@ -3,7 +3,7 @@
 ---@return table tbl A table with the given entries.
 function table.construct(...)
     local tbl = {}
-    for _, v in ipairs({ ... }) do
+    for _, v in ipairs { ... } do
         table.insert(tbl, v)
     end
     setmetatable(tbl, { __index = table })

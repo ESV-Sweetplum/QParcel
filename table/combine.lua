@@ -5,7 +5,7 @@ require('packages.table.duplicate')
 ---@return any[] tbl The resultant table.
 function table.combine(t1, ...)
     local newTbl = table.duplicate(t1)
-    for _, tbl in ipairs({ ... }) do
+    for _, tbl in ipairs { ... } do
         for i = 1, #tbl do
             table.insert(newTbl, tbl[i])
         end

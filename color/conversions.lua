@@ -135,7 +135,7 @@ end
 function color.rgbaToHexa(r, g, b, a)
     local flr = math.floor
     local hexaStr = ''
-    for _, col in ipairs({ r, g, b, a }) do
+    for _, col in ipairs { r, g, b, a } do
         hexaStr = hexaStr .. HEXADECIMAL[flr(col / 16) + 1] .. HEXADECIMAL[flr(col) % 16 + 1]
     end
     return hexaStr
