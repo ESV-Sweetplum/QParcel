@@ -11,3 +11,9 @@ function math.toNumber(x, defaultValue)
 end
 
 tn = math.toNumber
+
+---Similar to [math.toNumber](lua://math.toNumber) but forces an integer instead.
+---@param x (string | integer | boolean)?
+---@param defaultValue? integer
+---@return integer
+function ti(x, defaultValue) return math.floor(tn(x, defaultValue)) end
