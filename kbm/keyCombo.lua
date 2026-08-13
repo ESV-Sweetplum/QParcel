@@ -37,7 +37,7 @@ function kbm.keyComboCheck(keyCombo, type)
         return false
     end
     local keyReqNum = keys[keyReq]
-    if keyReq:find('^%d$') then keyReqNum = tn(keyReq) + 48 end
+    if keyReq:find('^%d$') then keyReqNum = ti(keyReq) + 48 end
     if not keyReqNum then return false end
     local fnTable = {
         down = utils.IsKeyDown,

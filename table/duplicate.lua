@@ -1,6 +1,6 @@
 require('packages.table.keys')
 ---Returns a deep copy of a table.
----@generic T : table
+---@generic T: table
 ---@param tbl T The original table.
 ---@return T tbl The new table.
 function table.duplicate(tbl)

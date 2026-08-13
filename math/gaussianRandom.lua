@@ -3,7 +3,7 @@
 ---@param stdDev number The standard deviation of the Gaussian distribution.
 ---@param withinStdDevCount number If the resulting random number is over this number of standard deviations from the mean, rerolls until it is no longer so.
 ---@return number z1 A random number.
----@return number x2 Another random number.
+---@return number z2 Another random number.
 function math.gaussianRandom(mean, stdDev, withinStdDevCount)
     if stdDev == 0 then return mean, mean end
 

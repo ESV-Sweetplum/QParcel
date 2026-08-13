@@ -50,10 +50,12 @@ function game.get.snapAt(time, dontPrintInaccuracy)
         div = remainder
     end
 
-    if math.floor(MAX_SNAP / divisor) ~= MAX_SNAP / divisor then return 5 end
-    if MAX_SNAP / divisor > 16 then return 5 end
+    local estimatedSnap = MAX_SNAP / divisor ---@cast estimatedSnap SnapNumber
 
-    return MAX_SNAP / divisor
+    if math.floor(estimatedSnap) ~= estimatedSnap then return 5 end
+    if estimatedSnap > 16 then return 5 end
+
+    return estimatedSnap
 end
 
 ---Gets the start time of the most recent SSF, or returns -1 if there is no SSF before the given offset.

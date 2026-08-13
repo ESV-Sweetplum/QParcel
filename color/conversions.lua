@@ -103,7 +103,7 @@ NONDUA = {
 ---@return integer
 function color.rgbaToUint(r, g, b, a)
     local flr = math.floor
-    return flr(a) * 16 ^ 6 + flr(b) * 16 ^ 4 + flr(g) * 16 ^ 2 + flr(r)
+    return 256 * (256 * (256 * flr(a) + flr(b)) + flr(g)) + flr(r)
 end
 
 ---Converts rgba (in vector form) to an unsigned integer (0 - 4294967295).

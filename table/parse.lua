@@ -26,7 +26,7 @@ function table.parse(str)
     local terms = {}
     local MAX_ITERATIONS = 10000
     for _ = 1, MAX_ITERATIONS do
-        local nestedTableFactor = tn(table.contains({ '[', '{' }, str:charAt(2)))
+        local nestedTableFactor = ti(table.contains({ '[', '{' }, str:charAt(2)))
         local depth = nestedTableFactor
         local searchIdx = 2 + nestedTableFactor
         local inQuotes = false

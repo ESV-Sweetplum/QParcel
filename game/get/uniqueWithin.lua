@@ -3,7 +3,7 @@ require('packages.table.sort')
 
 ---Finds and returns a list of all unique offsets of notes between selected notes [Table]
 ---@param includeLN? boolean
----@return number[]
+---@return integer[]
 function game.get.uniqueNoteOffsetsBetweenSelected(includeLN)
     local selectedNoteOffsets = game.get.uniqueSelectedNoteOffsets()
     if not truthy(selectedNoteOffsets) then return {} end

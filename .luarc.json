@@ -8,15 +8,6 @@
         "unused-local",
         "duplicate-doc-field"
     ],
-    "diagnostics.globals": [
-        "PLUGIN_NAME",
-        "PLUGIN_AUTHOR",
-        "PLUGIN_VERSION",
-        "PLUGIN_DESCRIPTION",
-        "ENVIRONMENT",
-        "DISTRO",
-        "imgui_disable_vector_packing"
-    ],
     "diagnostics.groupSeverity": {
         "ambiguity": "Error",
         "await": "Error",
@@ -32,7 +23,6 @@
         "unbalanced": "Error",
         "unused": "Warning"
     },
-    "diagnostics.libraryFiles": "Disable",
     "format.defaultConfig": {
         "call_arg_parentheses": "keep",
         "charset": "utf-8",
@@ -48,21 +38,12 @@
         "trim_trailing_whitespace": "true"
     },
     "format.enable": true,
-    "runtime.nonstandardSymbol": [
-        "|lambda|",
-        "!="
-    ],
     "runtime.version": "Lua 5.2",
-    "type.castNumberToInteger": true,
+    "type.castNumberToInteger": false,
     "type.checkTableShape": true,
     "type.inferParamType": true,
-    "workspace.ignoreDir": [
-        ".vscode",
-        "plugin.lua"
-    ],
+    "workspace.ignoreDir": [".vscode", "plugin.lua"],
     "workspace.ignoreSubmodules": false,
-    "workspace.library": [
-        "intellisense.lua"
-    ],
+    "workspace.library": ["intellisense.lua"],
     "workspace.useGitIgnore": true
 }

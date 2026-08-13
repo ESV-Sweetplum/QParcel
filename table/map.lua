@@ -2,7 +2,7 @@
 ---@generic T
 ---@generic U
 ---@param tbl T[]
----@param fn fun(element: T, idx?: number): U
+---@param fn fun(element: T, idx?: integer): U
 ---@return U[]
 function table.map(tbl, fn)
     local newTbl = {}

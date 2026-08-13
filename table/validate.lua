@@ -1,7 +1,7 @@
 require('packages.table.keys')
 require('packages.table.contains')
 ---When given a dictionary and table of keys, returns a new table with only the specified keys and values.
----@generic T table
+---@generic T: table
 ---@param checkList T The base table, which has a list of keys to include in the new table.
 ---@param tbl T The base table in which to lint the data from.
 ---@param extrapolateData? boolean If this is set to true, will fill in missing keys in the new table with values from the old table.
