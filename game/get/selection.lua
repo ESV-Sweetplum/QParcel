@@ -14,8 +14,10 @@ function game.get.selectionChanged()
     local selectionCount = #hos
     if selectionCount ~= selectionData.oldSelectionCount then changed = true end
     selectionData.oldSelectionCount = #hos
-    local startOffset = hos[1].StartTime or -1
-    local endOffset = hos[2].StartTime or -1
+    local firstHitObject = hos[1]
+    local lastHitObject = hos[#hos]
+    local startOffset = firstHitObject and firstHitObject.StartTime or -1
+    local endOffset = lastHitObject and lastHitObject.StartTime or -1
 
     if startOffset ~= selectionData.oldStartOffset or endOffset ~= selectionData.oldEndOffset then changed = true end
 
