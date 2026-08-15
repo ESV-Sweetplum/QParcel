@@ -3,4 +3,6 @@
 game = {
     window = {},
     get = {},
+    internal = {},
+    selection = {},
 }
