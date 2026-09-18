@@ -9,8 +9,8 @@ function queue.add(e)
 
     local function insertManyIfExists(tbl, key)
         local items = e[key]
-        if not items then return end
-        if not truthy(#items) then items = { items } end
+        if not items or type(items) == 'table' and not truthy(items) then return end
+        if type(items) ~= 'table' then items = { items } end
         for i = 1, #items do
             local item = items[i]
             table.insert(tbl, item)

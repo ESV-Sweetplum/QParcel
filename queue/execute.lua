@@ -17,6 +17,8 @@ function queue.execute()
     if edit.aTPs then table.insert(actionList, ea(action_type.AddTimingPointBatch, cur.tpsToAdd)) end
     if edit.rTPs then table.insert(actionList, ea(action_type.RemoveTimingPointBatch, cur.tpsToRemove)) end
 
+    if not truthy(actionList) then return end
+
     actions.PerformBatch(actionList)
     queue.reset()
 end
