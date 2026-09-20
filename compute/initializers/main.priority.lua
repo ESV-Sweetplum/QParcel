@@ -8,4 +8,5 @@ compute = {
         isFirstIter = true,
         completed = false,
     },
+    queueProgress = {},
 }

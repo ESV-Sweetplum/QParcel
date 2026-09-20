@@ -6,7 +6,7 @@ function truthy(param, assumeTrue)
     local t = type(param)
     if t == 'string' then return param:lower() == 'true' end
     if t == 'number' then return param > 0 end
-    if t == 'table' or t == 'userdata' then return next(param) ~= nil end
+    if t == 'table' or t == 'userdata' then return #param ~= 0 or next(param) ~= nil end
     if t == 'boolean' then return param end
     return assumeTrue or false
 end

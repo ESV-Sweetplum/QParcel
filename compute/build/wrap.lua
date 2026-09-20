@@ -8,7 +8,7 @@ function compute.wrap(id, fn, ...)
         return thread
     end
 
-    thread.build = function() table.insert(compute.auxiliary.queue, thread) end
+    thread.build = function() compute.auxiliary.insertToQueue(thread) end
 
     return thread
 end

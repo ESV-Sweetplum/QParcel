@@ -18,11 +18,13 @@ if truthy(compute.auxiliary.queue) then
     end
 
     compute.auxiliary.prog = compute.auxiliary.prog or 0
+    compute.queueProgress[first.id] = compute.auxiliary.prog
 
     if coroutine.status(first.cr) == 'dead' then
         if compute.auxiliary.queue[1].finalFn then
             compute.auxiliary.queue[1].finalFn(compute.auxiliary.buf, state.UnixTime - compute.auxiliary.startedAt)
         end
+        compute.queueProgress[first.id] = nil
         table.remove(compute.auxiliary.queue, 1)
         compute.auxiliary.result = compute.auxiliary.buf
         compute.auxiliary.buf = nil
@@ -30,4 +32,6 @@ if truthy(compute.auxiliary.queue) then
         compute.auxiliary.isFirstIter = true
         compute.auxiliary.completed = true
     end
+else
+    compute.queueProgress = {}
 end
