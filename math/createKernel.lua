@@ -12,11 +12,11 @@ function math.createKernel(kernelType, parameters)
             sum = sum + val
         end
 
-        local max_val = kernel[radius + 1]
-        if parameters.normalize then max_val = sum end
+        local maxVal = kernel[radius + 1]
+        if parameters.normalize then maxVal = sum end
 
         for i = 1, #kernel do
-            kernel[i] = kernel[i] / max_val
+            kernel[i] = kernel[i] / maxVal
         end
 
         return kernel, radius
