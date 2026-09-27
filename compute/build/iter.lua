@@ -1,6 +1,6 @@
+COMPUTE_SIZE = 1000
 function compute.iter(id, arr)
     local thread = compute.auxiliary.newEmptyThread(id)
-    local computeSize = 1000
 
     thread.forEach = function(f)
         local newThr = thread
@@ -8,7 +8,7 @@ function compute.iter(id, arr)
             local ct = #arr
             for idx, v in ipairs(arr) do
                 f(v)
-                if idx % computeSize == 0 then coroutine.yield('', idx / ct) end
+                if idx % COMPUTE_SIZE == 0 then coroutine.yield('', idx / ct) end
             end
         end
         newThr.onFinalize = function(g)
@@ -30,7 +30,7 @@ function compute.iter(id, arr)
             local out = {}
             for idx, v in pairs(arr) do
                 if f(v) then tinsert(out, v) end
-                if idx % computeSize == 0 then coroutine.yield('', idx / ct) end
+                if idx % COMPUTE_SIZE == 0 then coroutine.yield('', idx / ct) end
             end
 
             return out
@@ -58,7 +58,7 @@ function compute.iter(id, arr)
             local r = init
             for idx, v in ipairs(arr) do
                 r = f(r, v)
-                if idx % computeSize == 0 then coroutine.yield('', idx / ct) end
+                if idx % COMPUTE_SIZE == 0 then coroutine.yield('', idx / ct) end
             end
 
             return r
@@ -75,7 +75,6 @@ end
 
 function compute.iter2(id, arr)
     local thread = compute.auxiliary.newEmptyThread(id)
-    local computeSize = 1000
 
     thread.reduce = function(f, init)
         local newThr = thread
@@ -91,7 +90,7 @@ function compute.iter2(id, arr)
             for i = 2, ct do
                 local this = arr[i]
                 r = f(r, this, prev)
-                if i % computeSize == 0 then coroutine.yield('', i / ct) end
+                if i % COMPUTE_SIZE == 0 then coroutine.yield('', i / ct) end
                 prev = this
             end
 
