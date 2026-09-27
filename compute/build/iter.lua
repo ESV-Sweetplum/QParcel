@@ -23,12 +23,13 @@ function compute.iter(id, arr)
     end
 
     thread.filter = function(f)
+        local tinsert = table.insert
         local newThr = thread
         local fn = function()
             local ct = #arr
             local out = {}
-            for idx, v in ipairs(arr) do
-                if f(v) then out[#out + 1] = v end
+            for idx, v in pairs(arr) do
+                if f(v) then tinsert(out, v) end
                 if idx % computeSize == 0 then coroutine.yield('', idx / ct) end
             end
 
