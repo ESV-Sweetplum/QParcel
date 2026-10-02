@@ -9,8 +9,5 @@ compute = {
         isFirstIter = true,
         completed = false,
     },
-    cache = {
-        used = {},
-    },
     queueProgress = {},
 }
