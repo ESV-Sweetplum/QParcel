@@ -21,11 +21,20 @@ if truthy(compute.auxiliary.queue) then
     compute.queueProgress[first.id] = compute.auxiliary.prog
 
     if coroutine.status(first.cr) == 'dead' then
-        if compute.auxiliary.queue[1].finalFn then
-            compute.auxiliary.queue[1].finalFn(compute.auxiliary.buf, state.UnixTime - compute.auxiliary.startedAt)
+        local finalFns = compute.auxiliary.queue[1].finalFn
+        if finalFns then
+            if type(finalFns) == 'function' then
+                compute.auxiliary.queue[1].finalFn(compute.auxiliary.buf, state.UnixTime - compute.auxiliary.startedAt)
+            else
+                local fns = compute.auxiliary.queue[1].finalFn
+                for _, fn in ipairs(fns) do
+                    fn(compute.auxiliary.buf, state.UnixTime - compute.auxiliary.startedAt)
+                end
+            end
         end
         compute.queueProgress[first.id] = nil
         table.remove(compute.auxiliary.queue, 1)
+        compute.auxiliary.cache[first.id] = compute.auxiliary.buf
         compute.auxiliary.result = compute.auxiliary.buf
         compute.auxiliary.buf = nil
         compute.auxiliary.prog = 0
