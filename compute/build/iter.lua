@@ -1,4 +1,4 @@
-COMPUTE_SIZE = 1000
+COMPUTE_SIZE = 10000
 function compute.iter(id, arr)
     local thread = compute.auxiliary.newEmptyThread(id)
 

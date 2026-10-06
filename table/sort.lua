@@ -11,6 +11,12 @@ function sortAscending(a, b) return a < b end
 ---@return boolean
 function sortAscendingStartTime(a, b) return a.StartTime < b.StartTime end
 
+---Sorting function for sorting objects by their `startTime` property. Should be passed into [`table.sort`](lua://table.sort).
+---@param a { StartTime: number }
+---@param b { StartTime: number }
+---@return boolean
+function sortDescendingStartTime(a, b) return a.StartTime > b.StartTime end
+
 ---Sorting function for sorting objects by their `time` property. Should be passed into [`table.sort`](lua://table.sort).
 ---@param a { time: number }
 ---@param b { time: number }
